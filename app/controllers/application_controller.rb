@@ -137,6 +137,7 @@ class ApplicationController < ActionController::Base
         redirect_to :back
         flash[:danger] = t "can_not_load_domain"
       end
+      check_user_in_domain @choosen_domain
     end
   end
 
@@ -171,6 +172,13 @@ class ApplicationController < ActionController::Base
   def check_domain_present
     unless current_user.domains.present?
       flash[:danger] = t "not_have_domain"
+      redirect_to root_path
+    end
+  end
+
+  def check_user_in_domain domain
+    unless current_user.is_member_of_domain? domain
+      flash[:danger] = t "not_have_permission"
       redirect_to root_path
     end
   end

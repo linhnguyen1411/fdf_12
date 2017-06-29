@@ -3,6 +3,7 @@ class Dashboard::ShopManagerDomainsController < ApplicationController
   before_action :load_shop
   before_action :load_shop_manager, only: [:create, :destroy]
   before_action :authenticate_user!
+  skip_before_action :check_current_domain
 
   def index
     q = params[:user_search]

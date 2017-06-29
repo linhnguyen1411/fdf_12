@@ -1,3 +1,3 @@
 $('.user_item_<%= @shop_manager.user_id %>-<%= @choosen_domain.id %>').html('<%= link_to t("unset_manager"), dashboard_shop_manager_domain_path(@shop_manager.shop_id,  user_id: @shop_manager.user_id, shop_id: @shop.id, domain_id: @choosen_domain.id), method: :delete, class: "btn btn-warning", remote: true %>');
-$('.list-shop-manager').html('<%= j render "dashboard/shops/list_shop_manager", shop_managers: @shop_manager.shop.users %>');
-$('.number-shop-manager').html('<%= label_tag "", t("common.shop_managers", num: @shop_manager.shop.users.size), class: "text-header" %>');
+$('.list-shop-manager').html('<%= j render "dashboard/shops/list_shop_manager", shop_managers: managers_of_domans(@shop_manager.shop) %>');
+$('.number-shop-manager').html('<%= label_tag "", t("common.shop_managers", num: managers_of_domans(@shop_manager.shop).size), class: "text-header" %>');
