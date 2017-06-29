@@ -3,7 +3,7 @@ class UserDomainsController < ApplicationController
   before_action :load_domain_by_param, except: :update
   before_action :load_user_domain, only: [:update, :destroy]
   before_action :authenticate_user!
-  before_action :check_current_domain, except: :create
+  skip_before_action :check_current_domain
 
   def index
     @users = @choosen_domain.users
