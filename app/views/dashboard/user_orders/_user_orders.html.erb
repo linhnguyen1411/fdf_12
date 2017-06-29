@@ -1,52 +1,60 @@
-<% order_products.each do |key, value| %>
-  <div class="panel panel-default">
+<% if order_products.present? %>
+  <% order_products.each do |key, value| %>
     <div class="panel panel-default">
-      <div class="panel-body">
-        <div class="order-status-2 orders">
-          <span class="pull-left">
-            <strong><%= l key.to_date, format: :long %></strong>
-          </span>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="order-status-2 orders">
+            <span class="pull-left">
+              <strong><%= l key.to_date, format: :long %></strong>
+            </span>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="panel-body orders-hidden">
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th><%= t "order_statistics.id" %></th>
-            <th><%= t "order_statistics.user_name" %></th>
-            <th class="text-center"><%= t "order_statistics.details" %></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% group_by_user(value).each_with_index do |order_products, index| %>
+      <div class="panel-body orders-hidden">
+        <table class="table table-bordered">
+          <thead>
             <tr>
-              <td><%= increase_one index %></td>
-              <td>
-                <div><%= link_to user_name_for_id(order_products.first),
-                  user_path(id: order_products.first) %>
-                </div>
-              </td>
-              <td class="text-center">
-                <%= render "user_order_details", 
-                  order_products: order_products.last %>
-              </td> 
+              <th><%= t "order_statistics.id" %></th>
+              <th><%= t "order_statistics.user_name" %></th>
+              <th class="text-center"><%= t "order_statistics.details" %></th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            <% group_by_user(value).each_with_index do |order_products, index| %>
+              <tr>
+                <td><%= increase_one index %></td>
+                <td>
+                  <div><%= link_to user_name_for_id(order_products.first),
+                    user_path(id: order_products.first) %>
+                  </div>
+                </td>
+                <td class="text-center">
+                  <%= render "user_order_details", 
+                    order_products: order_products.last %>
+                </td> 
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
+  <% end %>
+  <p>
+    <%= t("download") %>
+    <%= link_to Settings.csv, dashboard_shop_user_order_path(id: @shop.id,
+      format: Settings.csv, type: type,
+      start_date: params[:start_date], end_date: params[:end_date])%> |
+    <!--
+    <%= link_to Settings.xls, dashboard_shop_user_order_path(id: @shop.id,
+      format: Settings.xls, type: type,
+      start_date: params[:start_date], end_date: params[:end_date]) %> |
+    -->
+    <%= link_to Settings.xlsx, dashboard_shop_user_order_path(id: @shop.id,
+      format: Settings.xlsx, type: type,
+      start_date: params[:start_date], end_date: params[:end_date]) %>
+  </p>
+<% else %>
+  <div class="history-order-done">
+    <span class="text-danger"><%= t "load_order" %></span>
   </div>
 <% end %>
-<p>
-  <%= t("download") %>
-  <%= link_to Settings.csv, dashboard_shop_user_order_path(id: @shop.id,
-    format: Settings.csv, type: type,
-    start_date: params[:start_date], end_date: params[:end_date])%> |
-  <%= link_to Settings.xls, dashboard_shop_user_order_path(id: @shop.id,
-    format: Settings.xls, type: type,
-    start_date: params[:start_date], end_date: params[:end_date]) %> |
-  <%= link_to Settings.xlsx, dashboard_shop_user_order_path(id: @shop.id,
-    format: Settings.xlsx, type: type,
-    start_date: params[:start_date], end_date: params[:end_date]) %>
-</p>

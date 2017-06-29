@@ -385,10 +385,3 @@ $(document).ready(function(){
     });
   });
 });
-
-$(document).ready(function(){
-  order_done = $('#count_order_products_done').val();
-  order_reject = $('#count_order_products_reject').val();
-  if(order_done == 0 && order_reject == 0)
-    sweetAlert(I18n.t('api.error'), I18n.t("load_order"), 'error');
-});

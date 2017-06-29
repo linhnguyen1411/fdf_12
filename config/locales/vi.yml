@@ -274,7 +274,7 @@ vi:
   current_month: "Tháng hiện tại"
   current_year: "Năm hiện tại"
   add_cart_succes: "Cập nhật giỏ hàng thành công"
-  load_order: "Không tìm thấy đơn hàng!"
+  load_order: "Không tìm thấy đơn hàng nào!"
   order_open_blank: "Không có đơn hàng nào đang mở!"
   submit: "Xác nhận"
   order_open_present: "Danh sách đơn hàng đang mở."
@@ -653,7 +653,7 @@ vi:
         btn_search: "Lọc"
         start_date: "Từ ngày"
         end_date: "Đến ngày"
-        filter_by: "Lọc theo"
+        filter_by: "Lọc đơn hàng theo"
   cart:
     view_cart_all: "Xem tất cả"
     add_to_card: "Thêm"
@@ -1060,3 +1060,4 @@ vi:
   confirm_delete_product: "Bạn thật sự muốn xóa sản phẩm %{product_name}?"
   confirm_cancel_request_shop: "Bạn muốn hủy yêu cầu vào miền %{domain_name} của cửa hàng %{shop_name}"
   confirm_delete_user_domain: "Bạn thật sự muốn xóa thành viên %{user_name} khỏi miền %{domain_name}?"
+  have_no_order_to_day: "Không có đơn hàng nào trong ngày hôm nay!"

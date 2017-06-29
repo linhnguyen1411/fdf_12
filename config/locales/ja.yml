@@ -606,7 +606,7 @@ ja:
         btn_search: "サーチ"
         start_date: から"
         end_date: "まで"
-        filter_by: "Filter by"
+        filter_by: "オーダを検索する"
   cart:
     view_cart_all: "すべて表示"
     add_to_card: "増加"
@@ -1010,3 +1010,4 @@ ja:
   confirm_delete_product: "あなたは本当に%{product_name}を削除しますか"
   confirm_cancel_request_shop: "あなたは%{domain_name}ドメインの %{shop_name}リクエストをキャンセルしたいです"
   confirm_delete_user_domain: "％{domain_name}ドメインから％{user_name}を削除しますか"
+  have_no_order_to_day: "今日 オーダー がありません"

@@ -230,7 +230,7 @@ en:
   current_month: "Current Month"
   current_year: "Current Year"
   add_cart_succes: "Update cart order successfully"
-  load_order: "Cannot find order"
+  load_order: "No orders found!"
   order_open_blank: "Don't have any order open!"
   submit: "Submit"
   order_open_present: "List order open."
@@ -612,7 +612,7 @@ en:
         btn_search: "Filter"
         start_date: "Start date"
         end_date: "End date"
-        filter_by: "Filter by"
+        filter_by: "Filter orders by"
   cart:
     view_cart_all: "View all"
     add_to_card: "Add to cart"
@@ -1002,3 +1002,4 @@ en:
   confirm_delete_product: "Do you really want to delete product %{product_name}?"
   confirm_cancel_request_shop: "Do you really want to cancel request join %{domain_name} domain of %{shop_name} shop"
   confirm_delete_user_domain: "Do you really want to delete member %{user_name} from %{domain_name} domain?"
+  have_no_order_to_day: "There are no orders today!"

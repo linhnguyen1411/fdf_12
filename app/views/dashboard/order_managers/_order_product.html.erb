@@ -1,59 +1,67 @@
-<% order_products.each do |key, value| %>
-  <div class="panel panel-default">
+<% if order_products.present? %>
+  <% order_products.each do |key, value| %>
     <div class="panel panel-default">
-      <div class="panel-body">
-        <div class="order-status-2 orders">
-          <span class="pull-left">
-            <strong><%= l key.to_date, format: :long %></strong>
-          </span>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="order-status-2 orders">
+            <span class="pull-left">
+              <strong><%= l key.to_date, format: :long %></strong>
+            </span>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="panel-body orders-hidden">
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th><%= t "order_statistics.id" %></th>
-            <th><%= t "order_statistics.name" %></th>
-            <th class="text-center"><%= t "order_statistics.quantity" %></th>
-            <th class="text-center"><%= t "order_statistics.price" %></th>
-            <th class="text-center"><%= t "order_statistics.total_price" %></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% value.each_with_index do |order_product, index| %>
+      <div class="panel-body orders-hidden">
+        <table class="table table-bordered">
+          <thead>
             <tr>
-              <td><%= increase_one index %></td>
-              <td>
-                <%= link_to order_product.name,
-                  dashboard_shop_product_path(order_product.product.shop.slug,
-                  order_product.product.slug, order_product_id: order_product.id)%>
-              </td>
-              <td class="text-center"><%= order_product.quantity %></td>
-              <td class="text-center"><%= order_product.product_price %></td>
-              <td class="text-center">
-                <strong><%= format_price order_product.price %></strong>
-              </td>
+              <th><%= t "order_statistics.id" %></th>
+              <th><%= t "order_statistics.name" %></th>
+              <th class="text-center"><%= t "order_statistics.quantity" %></th>
+              <th class="text-center"><%= t "order_statistics.price" %></th>
+              <th class="text-center"><%= t "order_statistics.total_price" %></th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <strong class="into-left">
-        <%= t "order_statistics.total_price" %>
-        <%= format_price value.sum &:price %>
-      </strong>
+          </thead>
+          <tbody>
+            <% value.each_with_index do |order_product, index| %>
+              <tr>
+                <td><%= increase_one index %></td>
+                <td>
+                  <%= link_to order_product.name,
+                    dashboard_shop_product_path(order_product.product.shop.slug,
+                    order_product.product.slug, order_product_id: order_product.id)%>
+                </td>
+                <td class="text-center"><%= order_product.quantity %></td>
+                <td class="text-center"><%= order_product.product_price %></td>
+                <td class="text-center">
+                  <strong><%= format_price order_product.price %></strong>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <strong class="into-left">
+          <%= t "order_statistics.total_price" %>
+          <%= format_price value.sum &:price %>
+        </strong>
+      </div>
     </div>
+  <% end %>
+  <p>
+    <%= t("download") %>
+    <%= link_to Settings.csv, dashboard_shop_order_manager_path(id: @shop.id,
+      format: Settings.csv, type: type,
+      start_date: params[:start_date], end_date: params[:end_date]) %> |
+    <!--
+    <%= link_to Settings.xls, dashboard_shop_order_manager_path(id: @shop.id,
+      format: Settings.xls, type: type,
+      start_date: params[:start_date], end_date: params[:end_date]) %> |
+    -->
+    <%= link_to Settings.xlsx, dashboard_shop_order_manager_path(id: @shop.id,
+      format: Settings.xlsx, type: type,
+      start_date: params[:start_date], end_date: params[:end_date]) %>
+  </p>
+<% else %>
+  <div class="history-order-done">
+    <span class="text-danger"><%= t "load_order" %></span>
   </div>
 <% end %>
-<p>
-  <%= t("download") %>
-  <%= link_to Settings.csv, dashboard_shop_order_manager_path(id: @shop.id,
-    format: Settings.csv, type: type,
-    start_date: params[:start_date], end_date: params[:end_date]) %> |
-  <%= link_to Settings.xls, dashboard_shop_order_manager_path(id: @shop.id,
-    format: Settings.xls, type: type,
-    start_date: params[:start_date], end_date: params[:end_date]) %> |
-  <%= link_to Settings.xlsx, dashboard_shop_order_manager_path(id: @shop.id,
-    format: Settings.xlsx, type: type,
-    start_date: params[:start_date], end_date: params[:end_date]) %>
-</p>
