@@ -1,5 +1,5 @@
 $('.history-order-done').html('<%= j render "user_orders", order_products: @order_products_done, type: :done %>')
 $('.history-order-reject').html('<%= j render "user_orders", order_products: @order_products_reject, type: :rejected %>')
 <% if @order_products_done.size == 0 && @order_products_reject.size == 0 %>
-  sweetAlert(I18n.t('api.error'), I18n.t("load_order"), 'error');
+  sweetAlert(I18n.t("load_order"), '', 'info');
 <% end %>

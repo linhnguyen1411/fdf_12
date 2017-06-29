@@ -1,4 +1,5 @@
 $('.show-order-history').html('<%= j render "list_orders", order_days: @order_days %>');
+$('.have-no-history-order').html('<%= t "load_order" %>');
 <% unless @order_days.present? %>
-  sweetAlert(I18n.t('have_no_order'), '', 'info');
+  sweetAlert(I18n.t('load_order'), '', 'info');
 <% end %>
