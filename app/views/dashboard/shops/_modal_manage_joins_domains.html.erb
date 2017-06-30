@@ -1,4 +1,5 @@
-<div class="modal fade" id="manage-domain-of-shop-<%= shop.id %>">
+<div class="modal fade modal-request-shop-domain" data-shop-id="<%= shop.id %>"
+  id="manage-domain-of-shop-<%= shop.id %>">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header modal_header">
@@ -16,58 +17,12 @@
               <th><%= t "shop" %></th>
               <th><%= t "products" %></th>
               <th><%= t "request_shop.status" %></th>
-              <th class="last">
+              <th class="last center">
                 <%= t "request_shop.request_to_domain" %>
               </th>
             </tr>
             </thead>
-            <tbody>
-            <% @current_user.domains.includes(:shops).each do |domain|  %>
-              <tr>
-                <td title="<%= domain.name %>">
-                  <%= load_icon_status_domain domain %>
-                  <%= truncate(domain.name, length: Settings.max_domain_name) %>
-                </td>
-                <td><%= domain.users.size %></td>
-                <td><%= domain.shop_domains.approved.size %></td>
-                <td><%= domain.products.size %></td>
-                <td>
-                  <% if domain.shops.include? shop %>
-                    <%= status_request_shop shop.request_status domain %>
-                  <% end %>
-                </td>
-                <td>
-                  <% shop_domain = ShopDomain.find_by shop_id: shop.id,
-                    domain_id: domain.id %>
-                  <% if !domain.shops.include? shop %>
-                    <% if domain.owner? current_user.id %>
-                      <%= link_to t("request_shop.request_to_domain"),
-                        shop_domains_path(shop_id: shop.id,
-                        domain_id: domain.id, status: :approved), method: :post,
-                        class: "btn btn-info refresh" %>
-                    <% else %>
-                      <%= link_to t("request_shop.request_to_domain"),
-                        shop_domains_path(shop_id: shop.id,
-                        domain_id: domain.id, status: :pending), method: :post,
-                        class: "btn btn-info refresh"%>
-                    <% end %>
-                  <% else %>
-                    <% if shop.request_status(domain).rejected? %>
-                      <%= link_to t("request_shop.request_to_domain"),
-                        shop_domain_path(shop_domain, status: :pending),
-                        method: :put, class: "btn btn-info refresh"%>
-                    <% else %>
-                      <%= link_to t("request_shop.cancel"),
-                        "#confirm-cancel-request-#{domain.id << shop.id}",
-                        "data-toggle": "modal",class: "btn btn-danger" %>
-                      <%= render "modal_confirm_cancel_request", domain: domain,
-                        shop: shop, shop_domain: shop_domain %>
-                    <% end %>
-                  <% end %>
-                </td>
-              </tr>
-            <% end %>
-            </tbody>
+            <tbody></tbody>
           </table>
         </div>
       </div>

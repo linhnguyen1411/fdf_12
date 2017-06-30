@@ -10,13 +10,8 @@
         <th><%= t ".actions" %></th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="list-shop-products">
       <%= render @products %>
     </tbody>
   </table>
-  <div class="load-more-products col-md-12 col-xs-12 margin-top-30">
-    <% if check_length_perpage @products %>
-      <%= link_to_next_page(@products, t("view_more_products")) %>
-    <% end %>
-  </div>
 </div>

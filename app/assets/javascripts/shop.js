@@ -68,7 +68,4 @@ $(document).ready(function() {
   $('#new-shop-modal').on('hidden.bs.modal', function() {
     $(this).html('');
   });
-  $(document).on('click', '.btn-confirm-cancel', function() {
-    $(this).parents('.modal-confirm-cancel-request').modal('hide');
-  });
 });

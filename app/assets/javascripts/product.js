@@ -124,4 +124,28 @@ $(document).ready(function() {
       }
     });
   });
+
+  $(document).on('click', '[data-destroy="product"]', function(e) {
+    e.preventDefault();
+    var url = $(this).attr('href');
+    var product_name = $(this).data('product-name');
+    swal({
+      customClass: 'custom-swal',
+      title: I18n.t('common.notifications'),
+      text: I18n.t('confirm_delete_product', {product_name: product_name}),
+      showCancelButton: true,
+      confirmButtonColor: '#ff5722',
+      confirmButtonText: I18n.t('submit'),
+      cancelButtonText: I18n.t('cancel'),
+      closeOnCancel: true
+    }, function(confirmed) {
+      if(confirmed) {
+        $.ajax({
+          url: url,
+          type: "delete",
+          dataType: "script"
+        });
+      }
+    });
+  });
 });

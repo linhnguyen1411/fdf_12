@@ -3,12 +3,14 @@
     <div class="col-xs-12">
       <div class="margin-bottom-20 margin-top-30 border-top-shop">
         <span class="top-shop-product">
-          <%= t "common.all_products" %>    
+          <%= t "common.all_products" %>
         </span>
         <span><span class="border-top-shop-product"></span></span>
       </div>
     </div>
-    <%= render @products %>
+    <div class="col-xs-12">
+      <%= render @products %>
+    </div>
   </div>
 </div>
 <%= paginate @products %>
