@@ -1061,3 +1061,7 @@ vi:
   confirm_cancel_request_shop: "Bạn muốn hủy yêu cầu vào miền %{domain_name} của cửa hàng %{shop_name}"
   confirm_delete_user_domain: "Bạn thật sự muốn xóa thành viên %{user_name} khỏi miền %{domain_name}?"
   have_no_order_to_day: "Không có đơn hàng nào trong ngày hôm nay!"
+  request_join_domain_success: "Gửi yêu cầu tham gia miền thành công"
+  delete_request_join_domain_success: "Đã hủy yêu cầu tham gia miền"
+  confirm_leave_shop_domain: "Bạn thật sự muốn xóa cửa hàng %{shop_name} khỏi miền %{domain_name}"
+  delete_shop_domain_success: "Đã xóa cửa hàng khỏi miền"

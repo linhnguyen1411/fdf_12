@@ -1,2 +1,11 @@
-$('#list-shops-<%= @choosen_domain.id %>').html('<%= j render "shop_domains/shop_domain", shop_domains: @list_shops %>');
-$('#list-request-shop-<%= @choosen_domain.id %>').html('<%= j render "shop_domains/shop_domain", shop_domains: @request_shops %>');
+<% if @destroy_status == Settings.status_save.success %>
+  $.growl.notice({title: '<%= t "common.notifications" %>',
+    message: '<%= t "delete_request_join_domain_success" %>'});
+  $('#manage-domain-of-shop-<%= @shop.id %> tbody').html('<%= j render partial: "list_request_shop_domain",
+    collection: @list_request_shop_domain, as: :domain, locals: {shop: @shop} %>');
+<% else %>
+  $('#list-shops-<%= @choosen_domain.id %>').html('<%= j render "shop_domains/shop_domain", shop_domains: @list_shops %>');
+  $('#list-request-shop-<%= @choosen_domain.id %>').html('<%= j render "shop_domains/shop_domain", shop_domains: @request_shops %>');
+  $.growl.notice({title: '<%= t "common.notifications" %>',
+    message: '<%= t "delete_shop_domain_success" %>'});
+<% end %>

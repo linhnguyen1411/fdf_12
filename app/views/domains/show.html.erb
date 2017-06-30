@@ -8,7 +8,7 @@
       <div class="clearfix body  margin-left_domain">
         <div class="category-list padding-top-0">
           <div class="<%= "scroll" if @domains.size > Settings.max_content_scroll %>">
-            <div class="col-lg-6 col-md-12 col-xs-6 padding_0 margin-top-5-bot-5
+            <div class="col-lg-6 col-md-12 col-xs-6 padding_0
               padding-left-right-5">
               <%= link_to products_path(domain_id: @domain.id),
                 class: "categorie" do %>
@@ -18,7 +18,7 @@
             <% @categories.each do |category| %>
               <% if number_product_in_category_by_domain(category, @domain) >
                 Settings.min_product_in_category %>
-                <div class="col-lg-6 col-md-12 col-xs-6 margin-top-5-bot-5
+                <div class="col-lg-6 col-md-12 col-xs-6
                   padding-left-right-5 padding_0">
                   <%= link_to domain_category_path(@domain, category),
                     class: "categorie bd-radius-category" do %>

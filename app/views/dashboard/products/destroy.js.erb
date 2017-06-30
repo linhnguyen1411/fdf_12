@@ -1,0 +1,11 @@
+<% if @destroy_product_status == Settings.destroy_product_status.has_order %>
+  $.growl.warning({title: '<%= t "common.notifications" %>',
+    message: '<%= t "flash.danger.dashboard.order_product" %>'});
+<% elsif @destroy_product_status == Settings.destroy_product_status.success %>
+  $.growl.notice({title: '<%= t "common.notifications" %>',
+    message: '<%= t "flash.success.dashboard.delete_product" %>'});
+  $('.product-id-<%= @product.id %>').remove();
+<% else %>
+  $.growl.error({title: '<%= t "common.notifications" %>',
+    message: '<%= t "flash.danger.dashboard.delete_product" %>'});
+<% end %>

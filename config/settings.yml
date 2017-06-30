@@ -153,3 +153,10 @@ fomat_time: "%H:%M"
 checkbox_value_true: "1"
 update_success: "true"
 update_fails: "false"
+destroy_product_status:
+  has_order: 0
+  success: 1
+  error: 2
+status_save:
+  success: 0
+  error: 1

@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $('.list-products').append('<%= j render @products %>');
+  $('#list-shop-products').append('<%= j render @products %>');
   <% if @products.last_page? %>
     $('.load-more-products').hide();
   <% else %>
