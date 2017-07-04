@@ -194,7 +194,11 @@
   <div class="box_pro">
     <%= render "products" if @products.any? %>
   </div>
-  <%= paginate @products %>
+  <div class="load-more-products col-md-12 col-xs-12 margin-top-30">
+    <% unless check_length_perpage @products %>
+      <%= link_to_next_page(@products, t("view_more_products")) %>
+    <% end %>
+  </div>
 </div>
 <!-- modals -->
 <%= render "modal_add_managers" %>

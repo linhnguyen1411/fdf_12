@@ -568,6 +568,7 @@ text-small {
 
   tbody td, thead th {
     width: 140px;
+    vertical-align: middle;
   }
 
   .last {
@@ -579,6 +580,9 @@ text-small {
   height: 450px;
   width: auto;
   overflow: auto;
+  td, th {
+    vertical-align: middle !important;
+  }
 }
 
 .food_banner_size {

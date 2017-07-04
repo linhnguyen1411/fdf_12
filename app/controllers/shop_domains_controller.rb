@@ -7,7 +7,12 @@ class ShopDomainsController < ApplicationController
 
   def index
     if request.xhr?
-      render_js nil, @choosen_domain
+      if params[:list_request_shop_domain]
+        @shop = Shop.find_by id: params[:shop_id]
+        @list_request_shop_domain = current_user.domains.includes(:shops)
+      else
+        render_js nil, @choosen_domain
+      end
     else
       @shop_domains = if params[:approved].present?
         @choosen_domain.shop_domains.includes(shop: :users).approved
@@ -29,13 +34,17 @@ class ShopDomainsController < ApplicationController
       shop_domain = ShopDomain.new shop_id: @shop.id, domain_id: @choosen_domain.id
     end
     check_save_shop_domain shop_domain
-    redirect_to :back
   end
 
   def destroy
     ShopDomain.destroy_all domain_id: params[:domain_id], shop_id: @shop.id
     if request.xhr?
-      render_js nil, @choosen_domain
+      if params[:delete_request]
+        @destroy_status = Settings.status_save.success
+        @list_request_shop_domain = current_user.domains.includes(:shops)
+      else
+        render_js nil, @choosen_domain
+      end
     else
       redirect_to :back
     end
@@ -56,7 +65,12 @@ class ShopDomainsController < ApplicationController
         message = t "rejected_shop_domain"
       end
       if request.xhr?
-        render_js message, @shop_domain.domain
+        if params[:resend_request]
+          @update_status = Settings.status_save.success
+          @list_request_shop_domain = current_user.domains.includes(:shops)
+        else
+          render_js message, @shop_domain.domain
+        end
       else
         flash[:success] = message
         redirect_to :back
@@ -85,7 +99,10 @@ class ShopDomainsController < ApplicationController
     if shop_domain.save
       shop_domain.create_event_request_shop @choosen_domain.owner, shop_domain
       sent_notification_domain_manager @choosen_domain, shop_domain
+      @status_save = Settings.status_save.success
+      @list_request_shop_domain = current_user.domains.includes(:shops)
     else
+      @status_save = Settings.status_save.error
       flash[:danger] = t "can_not_add_shop"
     end
   end

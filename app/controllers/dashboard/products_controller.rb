@@ -79,13 +79,13 @@ class Dashboard::ProductsController < BaseDashboardController
 
   def destroy
     if @product.order_products.any?
-      flash[:danger] = t "flash.danger.dashboard.order_product"
+      @destroy_product_status = Settings.destroy_product_status.has_order
     elsif @product.destroy
-      flash[:success] = t "flash.success.dashboard.delete_product"
+      load_products
+      @destroy_product_status = Settings.destroy_product_status.success
     else
-      flash[:danger] = t "flash.danger.dashboard.delete_product"
+      @destroy_product_status = Settings.destroy_product_status.error
     end
-    redirect_to dashboard_shop_path @shop
   end
 
   private
