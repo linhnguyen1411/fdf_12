@@ -1,2 +1,7 @@
-$('#list-shops-<%= @choosen_domain.id %>').html('<%= j render "shop_domains/shop_domain", shop_domains: @list_shops %>');
-$('#list-request-shop-<%= @choosen_domain.id %>').html('<%= j render "shop_domains/shop_domain", shop_domains: @request_shops %>');
+<% if params[:list_request_shop_domain] %>
+  $('#manage-domain-of-shop-<%= @shop.id %> tbody').html('<%= j render partial: "list_request_shop_domain",
+    collection: @list_request_shop_domain, as: :domain, locals: {shop: @shop} %>');
+<% else %>
+  $('#list-shops-<%= @choosen_domain.id %>').html('<%= j render "shop_domains/shop_domain", shop_domains: @list_shops %>');
+  $('#list-request-shop-<%= @choosen_domain.id %>').html('<%= j render "shop_domains/shop_domain", shop_domains: @request_shops %>');
+<% end %>

@@ -1,3 +1,10 @@
-$('#list-shops-<%= @shop_domain.domain_id %>').html('<%= j render "shop_domains/shop_domain", shop_domains: @list_shops %>');
-$('#list-request-shop-<%= @shop_domain.domain_id %>').html('<%= j render "shop_domains/shop_domain", shop_domains: @request_shops %>');
-$.growl.notice({message: '<%= @message %>'});
+<% if @update_status == Settings.status_save.success %>
+  $.growl.notice({title: '<%= t "common.notifications" %>',
+    message: '<%= t "request_join_domain_success" %>'});
+  $('#manage-domain-of-shop-<%= @shop_domain.shop_id %> tbody').html('<%= j render partial: "list_request_shop_domain",
+    collection: @list_request_shop_domain, as: :domain, locals: {shop: @shop_domain.shop} %>');
+<% else %>
+  $('#list-shops-<%= @shop_domain.domain_id %>').html('<%= j render "shop_domains/shop_domain", shop_domains: @list_shops %>');
+  $('#list-request-shop-<%= @shop_domain.domain_id %>').html('<%= j render "shop_domains/shop_domain", shop_domains: @request_shops %>');
+  $.growl.notice({title: '<%= t "common.notifications" %>', message: '<%= @message %>'});
+<% end %>

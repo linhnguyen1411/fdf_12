@@ -1,0 +1,44 @@
+<tr>
+  <td title="<%= domain.name %>">
+    <%= load_icon_status_domain domain %>
+    <%= truncate(domain.name, length: Settings.max_domain_name) %>
+  </td>
+  <td><%= domain.users.size %></td>
+  <td><%= domain.shop_domains.approved.size %></td>
+  <td><%= domain.products.size %></td>
+  <td>
+    <% if domain.shops.include? shop %>
+      <%= status_request_shop shop.request_status domain %>
+    <% end %>
+  </td>
+  <td>
+    <% shop_domain = ShopDomain.find_by shop_id: shop.id,
+      domain_id: domain.id %>
+    <% if !domain.shops.include? shop %>
+      <% if domain.owner? current_user.id %>
+        <%= link_to t("request_shop.request_to_domain"),
+          shop_domains_path(shop_id: shop.id, domain_id: domain.id,
+          status: :approved), method: :post, remote: true,
+          class: "btn btn-info refresh form-button" %>
+      <% else %>
+        <%= link_to t("request_shop.request_to_domain"),
+          shop_domains_path(shop_id: shop.id, domain_id: domain.id,
+          status: :pending), method: :post, remote: true,
+          class: "btn btn-info refresh form-button"%>
+      <% end %>
+    <% else %>
+      <% if shop.request_status(domain).rejected? %>
+        <%= link_to t("request_shop.request_to_domain"),
+          shop_domain_path(shop_domain, status: :pending, resend_request: true),
+          method: :put, remote: true, class: "btn btn-info refresh form-button"%>
+      <% else %>
+        <%= link_to t("request_shop.cancel"),
+          shop_domain_path(shop_domain, domain_id: domain.id,
+          shop_id: shop.id), data: {destroy: "shop-domain",
+          shop_name: shop.name, domain_name: domain.name,
+          leave_domain: shop_domain.approved? ? "0" : "1"},
+          class: "btn btn-danger form-button" %>
+      <% end %>
+    <% end %>
+  </td>
+</tr>

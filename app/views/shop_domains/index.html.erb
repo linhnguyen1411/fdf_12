@@ -9,10 +9,10 @@
             <th><%= t "admin.users.index.name" %></th>
             <th><%= t "shop_owner" %></th>
             <th><%= t "products" %></th>
-            <th><%= t "admin.users.index.actions" %></th>
+            <th class="center"><%= t "admin.users.index.actions" %></th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="list-request-shop-<%= @choosen_domain.id %>">
           <%= render "shop_domains/shop_domain", shop_domains: @shop_domains %>
         </tbody>
       </table>
