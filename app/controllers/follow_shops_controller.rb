@@ -12,7 +12,7 @@ class FollowShopsController < ApplicationController
   end
 
   private
-  
+
   def load_shop
     @shop = Shop.find_by id: params[:shop_id]
     render_json t("can_not_load_shop"), 404 unless @shop

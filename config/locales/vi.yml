@@ -1114,7 +1114,12 @@ vi:
   notice: "Thông báo!"
   import_user: "Thêm tài khoản (excel)"
   import_group_user: "Thêm nhóm (excel)"
+  chatwork_shop_message:
+    open: "Cửa hàng %{shop} của %{owner} được mở cửa trong %{hour} giờ %{min} phút, hãy nhanh tay đặt ngay cho mình những món hàng yêu thích tại %{url}"
+    close: "Cửa hàng %{shop} của %{owner} vừa đóng cửa, cám ơn bạn đã sử dụng dịch vụ của chúng tôi, hẹn gặp lại sau!"
+    open_forever: "Cửa hàng %{shop} của %{owner} vừa mở cửa, hãy nhanh tay đặt ngay cho mình những món hàng yêu thích tại %{url}"
   follow: "Theo dõi"
   unfollow: "Hủy theo dõi"
   follow_shop: "Bạn vừa theo dõi cửa hàng %{shop}!"
   unfollow_shop: "Bạn vừa hủy theo dõi cửa hàng %{shop}!"
+  chatwork_order_message: "Đơn hàng của bạn ở cửa hàng %{shop} đã được phê duyệt, vui lòng đến gặp quản lý cửa hàng để thanh toán!"

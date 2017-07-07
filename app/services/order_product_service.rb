@@ -13,4 +13,8 @@ class OrderProductService
       order.create_event_done done_products, rejected_products
     end
   end
+
+  def send_message_to_chatwork
+    SendOrdersInfoToChatworkJob.perform_later @updated_orders 
+  end
 end

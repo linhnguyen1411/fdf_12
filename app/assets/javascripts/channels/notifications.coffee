@@ -24,7 +24,7 @@ App.notifications = App.cable.subscriptions.create "NotificationsChannel",
     if Notification.permission == 'granted'
       notification = new Notification(title,
       icon: '/assets/' + image,
-      body: message)
+      body: message.replace(/\n/g, ' ').replace(/ +(?= )/g, '');)
       notification.onclick = ->
         window.open link
         return

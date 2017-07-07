@@ -1065,7 +1065,12 @@ ja:
   notice: "知らせます"
   import_user: "Import account (excel)"
   import_group_user: "Import group (excel)"
+  chatwork_shop_message:
+    open: "%{owner}の%{shop}ストアは、%{hour}時間%{min}分にオープンした直後に、%{url}に彼のお気に入りのアイテムを置く急ぎ"
+    close: "%{owner}の%{shop}ストアは 閉じました。ありがとうございました。また会いしましょう！"
+    open_forever: "%{owner}の%{shop}ストアは %{url}に彼のお気に入りのアイテムを置く急ぎ"
   follow: "フォローする"
   unfollow: "アンフォロー"
   follow_shop: "%{shop}に従ってください!"
   unfollow_shop: "%{shop}をフォローを解除しました!"
+  chatwork_order_message: "%{shop}でのご注文は、お支払いするために満たす店長を来てください!"

@@ -209,5 +209,4 @@ module ApplicationHelper
       [I18n.t("year"), :year]
     ]
   end
-
 end

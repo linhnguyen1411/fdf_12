@@ -1,7 +1,7 @@
 $('.cart-item-show').replaceWith('<%= j render( partial: "carts/list") %>');
 $('.cart-item').replaceWith('<%= j render(partial: "shared/cart") %>');
 $('.items-count').text('<%= @cart.count %>');
-<% if @cart.count == Settings.min_cart_item_show_caret %>
+<% if @cart.is_first_added? %>
   $('.dropdown-cart').append('<span class="caret"></span>');
   $('.li-dropdown-cart').append('<ul class="dropdown-menu min-width-cart" role="menu">'
     + '<%= j render "shared/cart" %><li class="divider"></li><li>'

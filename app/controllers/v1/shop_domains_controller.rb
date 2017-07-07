@@ -36,7 +36,7 @@ class V1::ShopDomainsController < V1::BaseController
   def destroy
     if params[:leave_domain].present?
       shop = Shop.find_by id: params[:shop_id]
-      if shop.is_owner? current_user.id
+      if shop.is_owner? current_user
         result = ShopDomainApiService.new(@shop_domain, current_user, "").destroy_shop_in_domain
         responses result
       else
