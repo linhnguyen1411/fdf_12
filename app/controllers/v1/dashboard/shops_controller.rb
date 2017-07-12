@@ -1,7 +1,7 @@
 class V1::Dashboard::ShopsController < V1::BaseController
   skip_before_filter :verify_authenticity_token, only: [:create, :update]
-  before_action :check_owner_or_manager, only: [:update, :edit]
-  before_action :load_shop, only: [:update, :edit]
+  before_action :check_owner_or_manager, only: [:update, :edit, :show]
+  before_action :load_shop, only: [:update, :edit, :show]
 
   def index
     user_id = params[:user_id]
@@ -23,6 +23,10 @@ class V1::Dashboard::ShopsController < V1::BaseController
       response_success t("api.success"), (DashboardShopsApiService.
         new.result_json @list_domains, @list_shops, @domain_info)
     end
+  end
+
+  def show
+    response_success t("api.success"), list_domain_of_shop
   end
 
   def create
@@ -79,5 +83,9 @@ class V1::Dashboard::ShopsController < V1::BaseController
     else
       response_error t "api.error"
     end
+  end
+
+  def list_domain_of_shop
+    ListDomainForShopApiService.new(@shop, current_user).result
   end
 end
