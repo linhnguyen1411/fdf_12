@@ -49,6 +49,7 @@ gem "validates_timeliness"
 gem "jquery-validation-rails"
 gem "sweet-alert-confirm"
 gem "axlsx_styler"
+gem "chatwork"
 gem "acts_as_follower", github: "tcocca/acts_as_follower"
 
 source "https://rails-assets.org" do

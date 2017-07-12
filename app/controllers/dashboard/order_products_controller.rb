@@ -13,6 +13,9 @@ class Dashboard::OrderProductsController < BaseDashboardController
       OrderProductService.new(updated_orders, @shop).update_order_product
       flash[:success] = t "flash.success.update_order"
       redirect_to dashboard_shop_order_managers_path
+      if @orders.present?
+        OrderProductService.new(updated_orders, @shop).send_message_to_chatwork
+      end
     end
   end
 

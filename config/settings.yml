@@ -162,3 +162,7 @@ status_save:
   error: 1
 min_cart_item_show_caret: 1
 min_cart_item_hide_caret: 0
+forder_chatwork_room: 79237339
+diliver_dot: "\n\n------------------------------------------------------------------------------------------------------\n"
+forder_chatwork_title: "[title][FORDER][/title]"
+root_path: "http://order.framgia.vn"

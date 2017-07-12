@@ -55,4 +55,9 @@ class Cart
       items.delete item
     end
   end
+
+  def is_first_added?
+    count == Settings.min_cart_item_show_caret && 
+      items.first.quantity == Settings.min_cart_item_show_caret
+  end
 end
