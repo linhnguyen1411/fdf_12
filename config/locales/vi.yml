@@ -1123,3 +1123,6 @@ vi:
   follow_shop: "Bạn vừa theo dõi cửa hàng %{shop}!"
   unfollow_shop: "Bạn vừa hủy theo dõi cửa hàng %{shop}!"
   chatwork_order_message: "Đơn hàng của bạn ở cửa hàng %{shop} đã được phê duyệt, vui lòng đến gặp quản lý cửa hàng để thanh toán!"
+  import_add_user_success: "%{num} người dùng đã được thêm! "
+  import_update_user_success: "%{num} người dùng đã được cập nhật! "
+  import_user_faild:  "%{num} tài khoản thêm không thành công!"

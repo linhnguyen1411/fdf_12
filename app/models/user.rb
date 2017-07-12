@@ -4,6 +4,7 @@ class User < ApplicationRecord
   acts_as_token_authenticatable
   ratyrate_rater
   acts_as_follower
+  acts_as_paranoid
 
   extend FriendlyId
   friendly_id :slug_candidates, use: [:slugged]
@@ -32,6 +33,7 @@ class User < ApplicationRecord
   has_many :events, dependent: :destroy
   has_many :user_domains, dependent: :destroy
   has_many :domains, through: :user_domains, dependent: :destroy
+  has_many :own_domains, class_name: "Domain", foreign_key: :owner
 
   enum status: {wait: 0, active: 1, blocked: 2}
   mount_uploader :avatar, UserAvatarUploader

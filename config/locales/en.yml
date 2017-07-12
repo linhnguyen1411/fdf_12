@@ -1065,3 +1065,6 @@ en:
   follow_shop: "You have followed shop %{shop}!"
   unfollow_shop: "You have unfollowed shop %{shop}!"
   chatwork_order_message: "Your order at shop %{shop} has been approved, please contact the store manager for payment!"
+  import_add_user_success: "%{num} users has been added "
+  import_update_user_success: "%{num} users has been updated "
+  import_user_faild:  "%{num} account can not be added"

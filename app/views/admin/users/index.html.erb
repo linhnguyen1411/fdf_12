@@ -2,13 +2,6 @@
 <div class="admin-button-header">
   <%= link_to t("common.create_button"), new_admin_user_path,
     class: "btn btn-success float-right form-button" %>
-  <%= form_tag admin_update_group_user_index_path(excel: :xls), method: :post,
-    multipart: true do %>
-    <%= file_field_tag :file, onchange: "this.form.submit();",
-      accept: "#{Settings.xls}, #{Settings.xlsx}", class: "hidden-file"%>
-    <%= link_to t("import_group_user"), "javascript:void(0)",
-      class: "choose-xls-file btn btn-default float-right" %>
-  <% end %>
   <%= form_tag admin_set_user_index_path(excel: :xls), method: :post,
     multipart: true do %>
     <%= file_field_tag :file, onchange: "this.form.submit();",
