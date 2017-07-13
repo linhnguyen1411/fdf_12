@@ -15,7 +15,8 @@ class V1::CategoriesController < V1::BaseController
         response_not_found t "api.error_domains_not_found"
       end
     else
-      response_not_found t "api.error_categories_not_found"
+      categories = Category.all
+      response_success t("api.success"), categories
     end
   end
 end
