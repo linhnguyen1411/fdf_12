@@ -8,12 +8,10 @@ class V1::Dashboard::ProductsController < V1::BaseController
     shop_manager = ShopManager.find_by user_id: current_user.id, shop_id: @shop.id
     if shop_manager.present? && (shop_manager.owner? || shop_manager.manager?)
       @product = @shop.products.new product_params
-      result = CreateProductService.new(@product, @shop).create
-      case result.first
-      when Settings.api_type_error
-        response_error result.last
-      when Settings.api_type_success
-        response_success result.last
+      if @product.save
+        response_success t "api.success"
+      else
+        response_error t "flash.danger.dashboard.create_product"
       end
     else
       response_error t "not_have_permission"
