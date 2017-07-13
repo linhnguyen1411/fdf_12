@@ -189,7 +189,7 @@ class Order < ApplicationRecord
 
   def update_new_status_order
     if self.pending?
-      self.update_attributes(status: :rejected, change_status: true)
+      self.update_attributes(status: :done, change_status: true)
       self.order_products.update_all status: :rejected
       self.create_event_reject
     end

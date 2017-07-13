@@ -1074,3 +1074,6 @@ ja:
   follow_shop: "%{shop}に従ってください!"
   unfollow_shop: "%{shop}をフォローを解除しました!"
   chatwork_order_message: "%{shop}でのご注文は、お支払いするために満たす店長を来てください!"
+  import_add_user_success: "%{num}ユーザーが追加されました "
+  import_update_user_success: "%{num}ユーザーが更新されました "
+  import_user_faild:  "%{num}アカウントを追加できません"

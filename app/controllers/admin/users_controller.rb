@@ -46,7 +46,7 @@ class Admin::UsersController < AdminController
   end
 
   def destroy
-    if @user.shop_managers.present?
+    if @user.shop_managers.present? || @user.own_domains.present?
       flash[:danger] = t "flash.danger.admin.existing_users_shops"
     else
       if @user.destroy
