@@ -131,4 +131,29 @@ $(document).ready(function(){
       }
     }
   });
+
+  $(document).on('click', '.paid-history-btn', function(e) {
+    e.preventDefault();
+    var order_id = $(this).data('order-id');
+    var shop_id = $(this).data('shop-id');
+    $.ajax({
+      url: '/dashboard/shops/' + shop_id + '/orders/' + order_id + '/edit',
+      type: 'GET',
+      dataType: 'json',
+      data: {
+        checked: true
+      },
+      success: function(response) {
+        if(response.mess === "true") {
+          sweetAlert(I18n.t('api.success'), I18n.t('update_success'), 'success');
+          $('.check-order-is-paid-'+ order_id)
+            .html('<span class="paid-order">'+ I18n.t("paid") + '</span>');
+        } else
+          sweetAlert(I18n.t('api.error'), I18n.t('update_fails'), 'error');
+      },
+      error: function(errors) {
+        sweetAlert(I18n.t('api.error'), I18n.t('api.error'), 'error');
+      }
+    });
+  });
 });

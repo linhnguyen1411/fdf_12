@@ -1126,3 +1126,4 @@ vi:
   import_add_user_success: "%{num} người dùng đã được thêm! "
   import_update_user_success: "%{num} người dùng đã được cập nhật! "
   import_user_faild:  "%{num} tài khoản thêm không thành công!"
+  pay_order: "Thanh toán"

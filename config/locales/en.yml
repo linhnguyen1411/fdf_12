@@ -1068,3 +1068,4 @@ en:
   import_add_user_success: "%{num} users has been added "
   import_update_user_success: "%{num} users has been updated "
   import_user_faild:  "%{num} account can not be added"
+  pay_order: "Pay"

@@ -62,4 +62,13 @@ module OrdersHelper
   def order_paid_status_text order
     order.is_paid ? t("paid") : t("unpaid")
   end
+
+  def paid_in_order_history_btn order
+    unless order.is_paid?
+      content_tag(:i, "", class: "glyphicon glyphicon-check btn_done") +       
+      (link_to t("pay_order"), "#",
+        class: "paid-history-btn",
+        data: {order_id: order.id, shop_id: order.shop.id})
+    end
+  end
 end
