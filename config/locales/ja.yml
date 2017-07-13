@@ -1077,3 +1077,4 @@ ja:
   import_add_user_success: "%{num}ユーザーが追加されました "
   import_update_user_success: "%{num}ユーザーが更新されました "
   import_user_faild:  "%{num}アカウントを追加できません"
+  pay_order: "ペイ"

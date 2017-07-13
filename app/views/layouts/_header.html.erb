@@ -72,24 +72,10 @@
             </li>
           <% end %>
           <% if current_user.domains.present? %>
-            <li class="dropdown li-dropdown-cart">
-              <a href="#" class="dropdown-toggle dropdown-cart"
-                data-toggle="dropdown" role="button" aria-expanded="false">
+            <li class="navbar-orders">
+              <%= link_to domain_carts_path(@domain) do %>
                 <span class="glyphicon glyphicon-shopping-cart"></span>
-                <span class="items-count"><%= @cart.count %></span>
-                <% if @cart.items.present? %>
-                  <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu min-width-cart" role="menu">
-                  <%= render "shared/cart" %>
-                  <li class="divider"></li>
-                  <li>
-                    <%= link_to t("cart.view_cart_all"), domain_carts_path(@domain),
-                      class: "btn-add btn" %>
-                  </li>
-                </ul>
-              <% else %>
-                </a>
+                <span class="items-count"><%= @cart.count %></span> 
               <% end %>
             </li>
             <li class="navbar-orders">

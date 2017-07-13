@@ -20,8 +20,9 @@
                 <%= t "order_at" %>
                 <%= orders.first.created_at.strftime(Settings.fomat_time) %>
               </strong>
-              <div>
-                <%= order_paid_status_label orders.first %>  
+              <div class="check-order-is-paid-<%= orders.first.id %>">
+                <div><%= order_paid_status_label orders.first %></div>
+                <%= paid_in_order_history_btn orders.first %>
               </div>
             </td>
           <% end %>
