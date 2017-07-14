@@ -52,6 +52,7 @@ Rails.application.routes.draw do
       resources :accepted_order_products, defaults: {format: :json}
       resources :user_orders, only: [:index, :show]
       resources :group_orders, only: [:index, :show]
+      resources :time_approve_orders, only: [:index, :show]
     end
     resources :statistics
     resources :new_manager_searches, only: :index

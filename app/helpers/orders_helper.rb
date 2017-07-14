@@ -21,7 +21,8 @@ module OrdersHelper
     {
       I18n.t("order_manage_filter.product") => "product",
       I18n.t("order_manage_filter.user") => "user",
-      I18n.t("order_manage_filter.group") => "group"
+      I18n.t("order_manage_filter.group") => "group",
+      I18n.t("order_manage_filter.time") => "time"
     }
   end
 
@@ -35,6 +36,10 @@ module OrdersHelper
 
   def group_by_user_group orders
     orders.group_by{|u| u.user.address.upcase if u.user.address.present?}
+  end
+
+  def group_by_time_approve orders
+    orders.group_by{|o| o.end_at}
   end
 
   def accepted_products order_products

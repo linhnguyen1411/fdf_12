@@ -1,0 +1,82 @@
+<table class="table table-bordered text-center">
+  <thead>
+    <tr>
+      <th><%= t "order_statistics.user_name" %></th>
+      <th></th>
+      <th><%= t "dashboard.products.show.stt" %></th>
+      <th><%= t "dashboard.products.show.name" %></th>
+      <th><%= t "dashboard.products.show.quantity" %></th>
+      <th><%= t "dashboard.products.show.notes" %></th>
+      <th><%= t "dashboard.products.show.price" %></th>
+      <th><%= t "dashboard.products.show.total" %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% group_by_user(order_products).each_with_index do |group_orders, index| %>
+      <% group_by_order(group_orders.last).each_with_index do |orders, index_user| %>
+        <tr>
+          <% if index_user.zero? %>
+            <td rowspan="<%= group_orders.last.size %>">
+              <%= user_name_for_id group_orders.first %>
+            </td>
+          <% end %>
+          <% orders.last.each_with_index do |order, index| %>
+            <% if index.zero? %>
+              <td rowspan="<%= orders.last.size %>">
+                <strong>
+                  <%= t "order_at" %>
+                  <%= orders.first.created_at.strftime Settings.fomat_time %>
+                </strong>
+                <div class="check-order-is-paid-<%= orders.first.id %>">
+                  <div><%= order_paid_status_label orders.first %></div>
+                  <%= paid_in_order_history_btn orders.first %>
+                </div>
+              </td>
+            <% end %>
+            <td>
+              <%= increase_one index %>
+            </td>
+            <td>
+              <%= order.product_name %>
+            </td>
+            <td>
+              <%= order.quantity %>
+            </td>
+            <td>
+              <%= order.notes %>
+            </td>
+            <td>
+              <%= order.product_price %>
+            </td>
+            <td>
+              <strong>
+                <%= total_price(order.product_price, order.quantity).to_i %>
+                <%= t "cart.vnd" %>
+              </strong>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+      <tr>
+        <td colspan="8">
+          <div class="order-time-approved-price">
+            <strong>
+              <%= t "order_statistics.total_price" %>
+              <%= format_price sum_price group_orders.last %> 
+            </strong>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+    <tr>
+      <td colspan="8">
+        <div class="order-statistics-total-price">
+          <strong>
+            <%= t "order_statistics.total_price" %>
+            <%= format_price sum_price order_products %>
+          </strong>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

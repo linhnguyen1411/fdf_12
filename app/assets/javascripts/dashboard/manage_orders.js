@@ -45,12 +45,19 @@ $(document).ready(function(){
   function filter_order(start_date, end_date) {
     var shop_id = $('#shop_id').val();
     var type = $('#history-order-manager').val();
-    if (type === 'product')
+    switch(type) {
+    case 'product':
       url = $(this).attr('action');
-    else if (type === 'user')
+      break;
+    case 'user':
       url = '/dashboard/shops/' + shop_id + '/user_orders'
-    else
+      break;
+    case 'group':
       url = '/dashboard/shops/' + shop_id + '/group_orders'
+      break;
+    default:
+      url = '/dashboard/shops/' + shop_id + '/time_approve_orders'
+    }
     $.ajax({
       url: url,
       type: 'GET',

@@ -154,3 +154,4 @@ class V1::ShopDomainsController < V1::BaseController
       end
     end
   end
+end

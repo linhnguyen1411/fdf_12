@@ -980,6 +980,7 @@ vi:
     product: "Sản phẩm"
     user: "Người dùng"
     group: "Nhóm"
+    time: "Thời gian đóng"
   opening_hours: "Giờ mở bán"
   food_name: "Tên món ăn"
   view_more_products: "Xem thêm sản phẩm"
@@ -1127,3 +1128,4 @@ vi:
   import_update_user_success: "%{num} người dùng đã được cập nhật! "
   import_user_faild:  "%{num} tài khoản thêm không thành công!"
   pay_order: "Thanh toán"
+  can_not_update_order: "Không thể cập nhật đơn hàng"

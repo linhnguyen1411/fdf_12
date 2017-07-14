@@ -923,6 +923,7 @@ en:
     product: "Product"
     user: "User"
     group: "Group"
+    time: "Closed time"
   opening_hours: "Opening hours"
   food_name: "Food's name"
   view_more_products: "View more products"
@@ -1069,3 +1070,4 @@ en:
   import_update_user_success: "%{num} users has been updated "
   import_user_faild:  "%{num} account can not be added"
   pay_order: "Pay"
+  can_not_update_order: "Cannot update orders"

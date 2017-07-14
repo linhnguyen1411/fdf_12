@@ -9,13 +9,10 @@ class V1::Dashboard::OrderProductsController < V1::BaseController
       s.order_products.detect{|o| o.pending?} == nil}.pluck(:id)
     orders = Order.orders_by_list_id orders_ids
     if orders.present?
-      updated_orders = orders.to_a
-      order_products = OrderProduct.all_order_product_of_list_orders(orders.ids).accepted
-      if (order_products.update_all status: :done) &&
-        (orders.update_all status: :done)
-        OrderProductService.new(updated_orders, @shop).update_order_product
-      response_success t "api.success"
-      end
+      result = OrdersService.new(orders, @shop).update_status
+
+      return response_success(result.last) if result.first == Settings.api_type_success
+      response_error result.last
     else
       response_not_found t "api.not_found"
     end
