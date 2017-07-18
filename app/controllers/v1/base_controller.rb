@@ -7,4 +7,14 @@ class V1::BaseController < ApplicationController
       response_error t "not_have_permission"
     end
   end
+
+  def response_list list, serializer, not_found_message
+    if list.present? 
+      results = ActiveModel::Serializer::CollectionSerializer
+        .new list, each_serializer: serializer
+      response_success t("api.success"), results
+    else
+      response_not_found not_found_message
+    end
+  end
 end

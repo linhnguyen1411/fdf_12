@@ -51,8 +51,7 @@ class V1::ShopDomainsController < V1::BaseController
   def show
     if current_user.domains.find_by(id: params[:domain_id]).present?
       list_request = ShopDomain.request_of_domain params[:domain_id]
-      list_request.present? ? response_success(t("api.success"), list_request)
-        : response_not_found(t "api.requests_not_found")
+      response_list list_request, ShopDomainSerializer, t("api.requests_not_found")
     else
       response_error t "api.not_owner_domain"
     end
@@ -155,4 +154,3 @@ class V1::ShopDomainsController < V1::BaseController
       end
     end
   end
-end
