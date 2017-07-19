@@ -37,7 +37,3 @@
 $(document).ready(function () {
   $('.alert').fadeOut(5000);
 });
-
-if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
-  alert(I18n.t("warning_firefox"));
-}
