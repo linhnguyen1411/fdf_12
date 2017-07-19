@@ -166,3 +166,7 @@ forder_chatwork_room: 79237339
 diliver_dot: "\n\n------------------------------------------------------------------------------------------------------\n"
 forder_chatwork_title: "[title][FORDER][/title]"
 root_path: "http://order.framgia.vn"
+format_type:
+  xls: "xls"
+  csv: "csv"
+  xlsx: "xlsx"

@@ -56,6 +56,13 @@ class OrderProduct < ApplicationRecord
         orders.shop_id = ?", Order.statuses[:done], shop_id)
   end
 
+  scope :history_orders, ->(shop_id) do
+    joins(:order)
+      .select("order_products.*, orders.end_at as end_at")
+      .where("orders.status = ? and orders.shop_id = ?", Order.statuses[:done], shop_id) 
+      .order("order_products.created_at desc")
+  end
+
   scope :order_by_date, ->{order created_at: :desc}
   scope :order_products_at_date, ->date {where("DATE(created_at) = ?", date)}
   scope :all_order_product_of_list_orders, ->list {where order_id: list}

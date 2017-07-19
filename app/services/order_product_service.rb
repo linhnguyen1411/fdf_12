@@ -15,6 +15,6 @@ class OrderProductService
   end
 
   def send_message_to_chatwork
-    SendOrdersInfoToChatworkJob.perform_later @updated_orders 
+    SendOrdersInfoToChatworkJob.perform_later @updated_orders.to_a
   end
 end

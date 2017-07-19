@@ -1,0 +1,17 @@
+<% @history_orders.send(params[:type]).each do |hash_orders| %>
+  <%= hash_orders.first %>
+
+  <% orders = hash_orders.last %>
+  <%group_by_time_approve(orders).each_with_index do |group_orders, index| %>
+    <%= t "order_at" %><%= group_orders.first.strftime(Settings.fomat_time) %>
+    <% group_by_user(group_orders.last).each_with_index do |order_products, index| %>
+
+      <%= increase_one index %>,<%= user_name_for_id(order_products.first) %>,<%= t "order_statistics.total_price" %><%= sum_price order_products.last %><%= t "cart.vnd" %>
+      ,<%= t "dashboard.products.show.stt" %>,<%= t "dashboard.products.show.name" %>,<%= t "dashboard.products.show.quantity" %>,<%= t "dashboard.products.show.notes" %>,<%= t "dashboard.products.show.price" %>,<%= t "dashboard.products.show.total" %>
+      <% order_products.last.each_with_index do |order, index| %>
+        ,<%= increase_one index %>,<%= order.product_name %>,<%= order.quantity %>,<%= order.notes %>,<%= order.product_price %>,<%= total_price(order.product_price, order.quantity).to_i %><%= t "cart.vnd" %>
+        
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

@@ -1,0 +1,62 @@
+<% if order_products.present? %>
+  <% order_products.each do |key, value| %>
+    <div class="panel panel-default">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="order-status-2 orders">
+            <span class="pull-left">
+              <strong><%= l key.to_date, format: :long %></strong>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="panel-body orders-hidden">
+        <table class="table table-bordered text-center">
+          <thead>
+            <tr>
+              <th><%= t "order_statistics.id" %></th>
+              <th><%= t "order_manage_filter.time" %></th>
+              <th class="text-center"><%= t "order_statistics.details" %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% group_by_time_approve(value).each_with_index do |order_products, index| %>
+              <tr>
+                <td><%= increase_one index %></td>
+                <td>
+                  <% if order_products.first.present? %>
+                    <strong><%= order_products.first.localtime.strftime Settings.fomat_time %></strong>
+                  <% end %>
+                </td>
+                <td class="text-center">
+                  <%= render "time_approve_order_details", 
+                    order_products: order_products.last %>
+                </td> 
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  <% end %>
+  <p>
+    <%= t "download" %>
+    <%= link_to Settings.format_type.csv,
+      dashboard_shop_time_approve_order_path(id: @shop.id,
+      format: Settings.format_type.csv, type: type, shop_id: @shop.id,
+      start_date: params[:start_date], end_date: params[:end_date])%> |
+    <!--
+    <%= link_to Settings.format_type.xls, dashboard_shop_group_order_path(id: @shop.id,
+      format: Settings.format_type.xls, type: type, shop_id: @shop.id,
+      start_date: params[:start_date], end_date: params[:end_date]) %> |
+    -->
+    <%= link_to Settings.format_type.xlsx,
+      dashboard_shop_time_approve_order_path(id: @shop.id,
+      format: Settings.format_type.xlsx, type: type, shop_id: @shop.id,
+      start_date: params[:start_date], end_date: params[:end_date]) %>
+  </p>
+<% else %>
+  <div class="history-order-done">
+    <span class="text-danger"><%= t "load_order" %></span>
+  </div>
+<% end %>

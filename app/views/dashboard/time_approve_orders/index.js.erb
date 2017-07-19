@@ -1,0 +1,5 @@
+$('.history-order-done').html('<%= j render "time_approve_orders", order_products: @history_orders.send(:done), type: :done %>')
+$('.history-order-reject').html('<%= j render "time_approve_orders", order_products: @history_orders.send(:rejected), type: :rejected %>')
+<% unless @history_orders.send(:done).any? || @history_orders.send(:rejected).any? %>
+  sweetAlert(I18n.t("load_order"), '', 'info');
+<% end %>

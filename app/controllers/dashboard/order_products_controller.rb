@@ -6,17 +6,9 @@ class Dashboard::OrderProductsController < BaseDashboardController
     orders_ids = Order.by_domain_ids(load_list_manage_domain).orders_of_shop_pending(@shop.id)
       .select{|s| s.order_products.detect{|o| o.pending?} == nil}.pluck(:id)
     @orders = Order.orders_by_list_id orders_ids
-    updated_orders = @orders.to_a
-    @order_products = OrderProduct.all_order_product_of_list_orders(@orders.ids).accepted
-    if (@order_products.update_all status: :done) &&
-      (@orders.update_all status: :done)
-      OrderProductService.new(updated_orders, @shop).update_order_product
-      flash[:success] = t "flash.success.update_order"
-      redirect_to dashboard_shop_order_managers_path
-      if @orders.present?
-        OrderProductService.new(updated_orders, @shop).send_message_to_chatwork
-      end
-    end
+    result = OrdersService.new(@orders, @shop).update_status if @orders.present?
+    flash[:success] = result.last
+    redirect_to dashboard_shop_order_managers_path 
   end
 
   def update
