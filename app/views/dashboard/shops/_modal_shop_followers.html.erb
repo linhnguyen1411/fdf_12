@@ -1,0 +1,45 @@
+<div id="shop-followers-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header modal_header">
+        <button type="button" class="close" data-dismiss="modal"
+          aria-hidden="true">&times;</button>
+        <h4 class="modal-title modal_text_header">
+          <%= t "shop_followers_list", num:  followers.size %>
+        </h4>
+      </div>
+      <div class="modal-body">
+        <div class="row padding-bottom-0">
+          <table class="table table-striped table-hover table-bordered">
+            <thead class="">
+              <tr>
+                <th></th>
+                <th></th>
+                <th><%= t "admin.users.index.name" %></th>
+                <th><%= t "admin.users.index.email" %></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% followers.each_with_index do |user, index| %>
+                <tr>
+                  <td><%= increase_one index %></td>
+                  <td>
+                    <%= image_tag user.avatar.url, class: "manager-img" %>
+                  </td>
+                  <td><p class="font-bold">
+                    <%= link_to user.name, user %>
+                  </p></td>
+                  <td><p><%= user.email %></p></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <%= link_to t("cancel"), "javascript:void(0)", data: {dismiss: "modal"},
+          class: "btn btn_add_to_cart btn-add padding-left-for-button" %>
+      </div>
+    </div>
+  </div>
+</div>
