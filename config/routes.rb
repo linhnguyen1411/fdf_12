@@ -120,7 +120,7 @@ Rails.application.routes.draw do
     resources :shop_managers, defaults: {format: :json}
     resources :comments, defaults: {format: :json}
     resources :user_domains, defaults: {format: :json}
-    resources :events, only: :index, defaults: {format: :json}
+    resources :events, only: [:index, :update], defaults: {format: :json}
     resources :users, only: :update, defaults: {format: :json}
     resources :user_settings, only: :index, defaults: {format: :json}
     resources :searches, only: :index, defaults: {format: :json}

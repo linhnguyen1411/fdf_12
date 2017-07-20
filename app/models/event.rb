@@ -12,6 +12,10 @@ class Event < ApplicationRecord
     eventable_id: id
   end
 
+  def of_user? user
+    self.user == user
+  end
+
   def load_message
     case eventable_type
     when Shop.name
