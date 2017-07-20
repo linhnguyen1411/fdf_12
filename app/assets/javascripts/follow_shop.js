@@ -12,6 +12,7 @@ $(document).ready(function() {
           self.removeClass('follow-shop btn-warning')
             .addClass('unfollow-shop btn-danger');
           self.text(I18n.t('unfollow'));
+           $('.shop-followers-count').text(data.follow_count);
         }
         else {
           $.growl.error({message: data.flash});
@@ -37,6 +38,7 @@ $(document).ready(function() {
           self.removeClass('unfollow-shop btn-danger')
             .addClass('follow-shop btn-warning');
           self.text(I18n.t('follow'));
+          $('.shop-followers-count').text(data.follow_count);
         }
         else {
           $.growl.error({message: data.flash});

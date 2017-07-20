@@ -46,11 +46,13 @@
         <div class="col-sm-6 col-md-3 col-xs-6">
           <div class="general_item">
             <div class="col-sm-3 col-md-3 col-xs-3 padding-0">
-              <i class="material-icons general_icon">backup</i>
+              <i class="material-icons general_icon">favorite</i>
             </div>
             <div class="col-sm-9 col-md-9 col-xs-9 padding-right-0 padding-left-0">
-              <div class="general_number"><%= @shop.orders.size %></div>
-              <%= t "general_info.total.orders" %>
+              <div class="general_number shop-followers-count">
+                <%= @shop.followers_count %>
+              </div>
+              <%= t "general_info.total.followers" %>
             </div>
           </div>
         </div>

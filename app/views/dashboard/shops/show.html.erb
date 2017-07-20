@@ -174,6 +174,13 @@
               <div><%= t "manage_joins_domains" %></div>
             <% end %>
           </div>
+          <div class="btn_function">
+            <%= link_to "#shop-followers-modal",
+              data: {toggle: "modal"}, class: "btn_item" do %>
+              <i class="btn_icon material-icons">favorite</i>
+              <div><%= t "general_info.total.followers" %></div>
+            <% end %>
+          </div>
         <% end %>
       <% end %>
       </div>
@@ -205,5 +212,6 @@
 <%= render "modal_change_owner" %>
 <%= render "modal_settings_time_orders" %>
 <%= render "modal_manage_joins_domains", shop: @shop %>
+<%= render "modal_shop_followers", followers: @shop.followers %>
 <div id="new-edit-product-modal" class="modal fade"></div>
 <div id="edit-shop-modal" class="modal fade"></div>

@@ -990,6 +990,7 @@ vi:
       orders: "Số đơn hàng đã nhận."
       order_pending: "Số đơn hàng đang đợi."
       products: "Số lượng sản phẩm."
+      followers: "Người theo dõi."
     reject_order_auto: "Thời gian hủy đơn hàng tự động."
     open_shop_now: "Mở cửa ngay"
     close_shop_now: "Đóng cửa ngay"
@@ -1129,3 +1130,4 @@ vi:
   import_user_faild:  "%{num} tài khoản thêm không thành công!"
   pay_order: "Thanh toán"
   can_not_update_order: "Không thể cập nhật đơn hàng"
+  shop_followers_list: "%{num} người theo dõi"

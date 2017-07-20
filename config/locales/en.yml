@@ -933,6 +933,7 @@ en:
       orders: "Number of orders received"
       order_pending: "Number of orders pending"
       products: "Number of products"
+      followers: "Followers"
     reject_order_auto: "Auto reject orders"
     open_shop_now: "Open shop now"
     close_shop_now: "Close shop now"
@@ -1071,3 +1072,4 @@ en:
   import_user_faild:  "%{num} account can not be added"
   pay_order: "Pay"
   can_not_update_order: "Cannot update orders"
+  shop_followers_list: "%{num} followers"

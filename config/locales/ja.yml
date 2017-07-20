@@ -941,6 +941,7 @@ ja:
       orders: "受注数"
       order_pending: "保留中の注文数"
       products: "製品数"
+      followers: "フォロワー"
     reject_order_auto: "オーダーの自動拒否"
     open_shop_now: "今すぐオープンショップ"
     close_shop_now: "今すぐ店を閉める"
@@ -1081,3 +1082,4 @@ ja:
   pay_order: "ペイ"
   unpaid: "未払い"
   can_not_update_order: "故障"
+  shop_followers_list: "%{num} フォロワー"
