@@ -2,7 +2,7 @@ class V1::Dashboard::ShopDomainsController < V1::BaseController
   before_action :load_domain, only: :index
 
   def index
-    shops = @domain.shops
+    shops = Shop.shop_in_domain @domain.id
     if shops.present?
       result = ShopService.new(shops).get_information_all_shops
       response_success t("api.success"), result
@@ -12,10 +12,9 @@ class V1::Dashboard::ShopDomainsController < V1::BaseController
   end
 
   private
+
   def load_domain
     @domain = Domain.find_by id: params[:domain_id]
-    unless @domain.present?
-      response_not_found t "api.error_domains_not_found"
-    end
+    return response_not_found t "api.error_domains_not_found"  unless @domain.present?
   end
 end
