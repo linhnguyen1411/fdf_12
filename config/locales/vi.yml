@@ -1131,3 +1131,10 @@ vi:
   pay_order: "Thanh toán"
   can_not_update_order: "Không thể cập nhật đơn hàng"
   shop_followers_list: "%{num} người theo dõi"
+  reset_password:
+    hello: Xin chào %{name}!
+    link: "Ai đó đã yêu cầu liên kết thay đổi mật khẩu của bạn. Bạn có thể thực hiện điều này thông qua liên kết bên dưới."
+    change: "Thay đổi mật khẩu"
+    token: "Hoặc bạn có thể sử dụng mã thông báo này để thay đổi mật khẩu trong ứng dụng trên điện thoại di động của mình:"
+    igone: "Nếu bạn không yêu cầu điều này, vui lòng bỏ qua email này."
+    end: "Mật khẩu của bạn sẽ không thay đổi cho đến khi bạn truy cập liên kết ở trên và tạo một mật khẩu mới."
