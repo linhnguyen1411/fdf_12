@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   before_action :load_events
   before_action :check_current_domain
   before_action :load_domain_in_session
-  before_filter :set_cache_back
+  before_action :set_cache_back
 
   protected
   def configure_permitted_parameters

@@ -125,5 +125,6 @@ Rails.application.routes.draw do
     resources :users, only: :update, defaults: {format: :json}
     resources :user_settings, only: :index, defaults: {format: :json}
     resources :searches, only: :index, defaults: {format: :json}
+    resources :reset_passwords, only: [:index, :update], defaults: {format: :json}
   end
 end

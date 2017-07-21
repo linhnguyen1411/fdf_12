@@ -1083,3 +1083,10 @@ ja:
   unpaid: "未払い"
   can_not_update_order: "故障"
   shop_followers_list: "%{num} フォロワー"
+  reset_password:
+    hello: Hello %{name}!
+    link: "Someone has requested a link to change your password. You can do this through the link below."
+    change: "Change my password"
+    token: "Or you can use this token to change password in your mobile app:"
+    igone: "If you didn't request this, please ignore this email."
+    end: "Your password won't change until you access the link above and create a new one."
