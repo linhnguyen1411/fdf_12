@@ -24,7 +24,7 @@ Rails.application.routes.draw do
 
   get "index" => "static_pages#index"
   get "canhan" => "static_pages#show"
-  get "moble-page" => "static_pages#new"
+  get "mobile-page" => "static_pages#new"
   root "static_pages#home"
   mount ActionCable.server => "/cable"
   namespace :admin do

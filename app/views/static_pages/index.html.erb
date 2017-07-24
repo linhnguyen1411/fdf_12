@@ -78,7 +78,8 @@
             </h1>
             <p class="lead"><%= t "index.mobile.context" %></p>
             <div class="margin-top-50">
-              <%= link_to "#", class: "btn v2-btn-success btn_download" do %>
+              <%= link_to Settings.mobile_app_download_link,
+                class: "btn v2-btn-success btn_download" do %>
                 <i class="fa fa-cloud-download" aria-hidden="true"></i>
                 <%= t "download_app" %>
               <% end %>
