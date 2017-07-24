@@ -78,7 +78,7 @@ class Dashboard::ShopsController < BaseDashboardController
               if @@current_action == Settings.shop_actions.index
                 redirect_to dashboard_shops_path
               else
-                redirect_to dashboard_shop_path
+                redirect_to dashboard_shop_path @shop
               end
             else
               flash[:danger] = t "flash.danger.dashboard.updated_shop"
@@ -104,7 +104,7 @@ class Dashboard::ShopsController < BaseDashboardController
     else
       params.require(:shop).permit(:id, :name, :description,
         :cover_image, :avatar, :time_auto_reject, :time_auto_close, :openforever)
-        .merge status_on_off: :off, delayjob_id: nil
+        .merge delayjob_id: nil
     end
   end
 

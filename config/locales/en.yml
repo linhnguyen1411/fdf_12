@@ -1080,3 +1080,10 @@ en:
     token: "Or you can use this token to change password in your mobile app:"
     igone: "If you didn't request this, please ignore this email."
     end: "Your password won't change until you access the link above and create a new one."
+  add_cart:
+    success: "Update cart successfully!"
+    product: "The product you just added"
+    cart: "Your cart"
+    number_products: "Number of products: "
+    continue: "Continue shopping"
+    finish: "Checkout"

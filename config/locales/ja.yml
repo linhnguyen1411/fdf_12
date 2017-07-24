@@ -1090,3 +1090,10 @@ ja:
     token: "Or you can use this token to change password in your mobile app:"
     igone: "If you didn't request this, please ignore this email."
     end: "Your password won't change until you access the link above and create a new one."
+  add_cart:
+    success: "成功する!"
+    product: "今追加しの製品"
+    cart: "あなたのカート"
+    number_products: "製品の数: "
+    continue: "ショッピングを続ける"
+    finish: "チェックアウト"

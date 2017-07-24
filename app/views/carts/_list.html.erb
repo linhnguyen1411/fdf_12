@@ -101,7 +101,7 @@
           <% if cart.present? %>
             <%= link_to t("order_this_shop"),
               new_domain_order_path(@domain, shop_id: cart[:shop_id]),
-              class: "btn v2-btn-warning font-weight-bold" %>
+              class: "btn btn-warning font-weight-bold" %>
           <% end %>
         </div>
         <br>
