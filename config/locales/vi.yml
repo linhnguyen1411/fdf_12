@@ -1138,3 +1138,10 @@ vi:
     token: "Hoặc bạn có thể sử dụng mã thông báo này để thay đổi mật khẩu trong ứng dụng trên điện thoại di động của mình:"
     igone: "Nếu bạn không yêu cầu điều này, vui lòng bỏ qua email này."
     end: "Mật khẩu của bạn sẽ không thay đổi cho đến khi bạn truy cập liên kết ở trên và tạo một mật khẩu mới."
+  add_cart:
+    success: "Cập nhật giỏ hàng thành công!"
+    product: "Sản phẩm bạn vừa thêm"
+    cart: "Giỏ hàng của bạn"
+    number_products: "Số lượng sản phẩm: "
+    continue: "Tiếp tục mua hàng"
+    finish: "Đặt hàng"

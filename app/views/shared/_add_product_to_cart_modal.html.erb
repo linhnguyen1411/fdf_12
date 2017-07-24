@@ -1,0 +1,57 @@
+<div id="add-product-to-cart-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-product">
+    <div class="modal-content">
+      <div class="modal-header modal_header">
+        <button type="button" class="close" data-dismiss="modal"
+          aria-hidden="true">&times;</button>
+        <h4 class="modal-title modal_text_header"><%= t "add_cart.success" %></h4>
+      </div>
+      <div class="modal-body">
+        <div class="panel panel-default">
+          <div class="panel-heading"><%= t "add_cart.product" %></div>
+          <div class="panel-body">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="col-md-7 col-sm-7 col-xs-7">
+                <%= image_tag product.image.url, class: "img-responsive" %>
+              </div>
+              <div class="col-md-5 col-sm-5 col-xs-5 text-center product-cart-info">
+                <div class="product_text padding-left-0 name_product_in_shop padding-right-0">
+                  <strong><%= product.name %></strong>
+                </div>
+                <div class="padding_0 product_text truncate">
+                  <h4 class="margin-bottom-10"><%= format_price product.price %></h4>
+                </div>
+                <%= product.shop_name %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading"><%= t "add_cart.cart" %></div>
+          <div class="panel-body">
+            <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+              <div class="col-md-7 col-sm-7 col-xs-7">
+                <b><%= t "add_cart.number_products" %></b><%= @cart.count %>
+              </div>
+              <div class="col-md-5 col-sm-5 col-xs-5">
+                <b><%= t "all" %></b> <%= format_price @cart.total_price %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <%= link_to "#", data: {dismiss: "modal"},
+          class: "btn btn_add_to_cart btn-add btn-success" do %>
+          <span class="glyphicon glyphicon-shopping-cart"></span>
+          <%= t "add_cart.continue" %>
+        <% end %>
+        <%= link_to carts_path, class: "btn btn_add_to_cart btn-add
+          padding-left-for-button btn_center" do %>
+          <span class="glyphicon glyphicon glyphicon-check"></span>
+          <%= t "add_cart.finish" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

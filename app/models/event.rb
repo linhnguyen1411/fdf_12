@@ -53,13 +53,13 @@ class Event < ApplicationRecord
     when Product.name
       eventable.image.url
     when Order.name
-      "#{message}.png"
+      "/assets/#{message}.png"
     when OrderProduct.name
-      "#{message}.png"
+      "/assets/#{message}.png"
     when User.name
-      Settings.image_url.systemdone
+      "/assets/" + Settings.image_url.systemdone
     when ShopDomain.name
-      Settings.image_url.systemdone
+      "/assets/" + Settings.image_url.systemdone
     when UserDomain.name
       user = User.find_by id: eventitem_id
       user.avatar.url
