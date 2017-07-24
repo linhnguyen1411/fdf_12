@@ -170,3 +170,4 @@ format_type:
   xls: "xls"
   csv: "csv"
   xlsx: "xlsx"
+mobile_app_download_link: "https://github.com/framgia/android_forder_01/blob/develop/app/Apk/FOrder.apk?raw=true"
