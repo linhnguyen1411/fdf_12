@@ -8,10 +8,12 @@ $('.items-count').text('<%= @cart.count %>');
     + '<%= j link_to t("cart.view_cart_all"), domain_carts_path(@domain), class: "btn-add btn" %>'
     + '</li></ul>');
 <% end %>
-$('.render_js_after_ajax_rails').html('<%= javascript_include_tag "modal" %>')
+$('.render_js_after_ajax_rails').html('<%= javascript_include_tag "modal" %>');
+$('.quantity-product-cart').text('<%= @cart.find_item(@product.id.to_s).quantity %>');
+$('.cart-price-in-modal').text('<%= format_price @cart.total_price %>');
 $.growl.notice({title: '<%= t "common.notifications" %>',
   message: '<%= t "add_cart_succes" %>'});
-<% if @product.present? %>
+<% unless @is_edit.present? %>
   $('#add-cart-modal').html('<%= j render "shared/add_product_to_cart_modal", product: @product %>');
   $('#add-product-to-cart-modal').modal('show');
 <% end %>

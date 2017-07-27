@@ -51,8 +51,8 @@
                       </td>
                       <td>
                         <span class="item-right">
-                          <%= link_to set_cart_path(item.product_id), method: :delete,
-                            class: "pull-right" do %>
+                          <%= link_to cart_path(item.product_id), method: :delete,
+                            remote: true, class: "pull-right" do %>
                             <span class="glyphicon glyphicon-trash text-danger
                               action-padding">
                             </span>
@@ -63,7 +63,7 @@
                           <span class="glyphicon glyphicon-minus-sign
                             text-primary action-padding"></span>
                         <% end %>
-                        <%= link_to cart_path(item.product_id), remote: true,
+                        <%= link_to cart_path(id: item.product_id, edit: true), remote: true,
                           method: :put, class: "pull-right" do %>
                           <span class="glyphicon glyphicon-plus-sign text-success
                             action-padding"></span>
@@ -100,8 +100,8 @@
         <div class="defaut-top">
           <% if cart.present? %>
             <%= link_to t("order_this_shop"),
-              new_domain_order_path(@domain, shop_id: cart[:shop_id]),
-              class: "btn btn-warning font-weight-bold" %>
+              domain_orders_path(@domain, shop_id: cart[:shop_id]),
+              method: :post, class: "btn btn-warning btn-add margin_order" %>
           <% end %>
         </div>
         <br>

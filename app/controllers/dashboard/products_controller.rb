@@ -61,19 +61,12 @@ class Dashboard::ProductsController < BaseDashboardController
   end
 
   def update
-    if @product.update_attributes product_params
-      flash[:success] = t "flash.success.dashboard.edit_product"
-      respond_to do |format|
-        format.json do
-          render json: {status: @product.status}
-        end
-        format.html do
-          redirect_to dashboard_shop_path @shop
-        end
+    @success = @product.update_attributes(product_params) ? true : false
+    respond_to do |format|
+      format.json do
+        render json: {status: @product.status}
       end
-    else
-      flash[:danger] = t "flash.danger.dashboard.edit_product"
-      render :edit
+      format.js
     end
   end
 
