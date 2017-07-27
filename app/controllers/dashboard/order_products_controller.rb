@@ -6,8 +6,10 @@ class Dashboard::OrderProductsController < BaseDashboardController
     orders_ids = Order.by_domain_ids(load_list_manage_domain).orders_of_shop_pending(@shop.id)
       .select{|s| s.order_products.detect{|o| o.pending?} == nil}.pluck(:id)
     @orders = Order.orders_by_list_id orders_ids
-    result = OrdersService.new(@orders, @shop).update_status if @orders.present?
-    flash[:success] = result.last
+    if @orders.present?
+      result = OrdersService.new(@orders, @shop).update_status
+      flash[:success] = result.last
+    end
     redirect_to dashboard_shop_order_managers_path 
   end
 

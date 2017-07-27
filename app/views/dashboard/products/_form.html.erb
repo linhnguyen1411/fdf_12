@@ -1,5 +1,5 @@
 <div class="row">
-  <%= form_for [:dashboard, @shop, @product], html: {class: "form-product"} do |f| %>
+  <%= form_for [:dashboard, @shop, @product], html: {class: "form-product"}, remote: true do |f| %>
     <div class="col-xs-5 padding-right-0">
       <div class="form-group relative">
         <%= f.label :image, t("new_product.image") %>

@@ -14,14 +14,40 @@
               <div class="col-md-7 col-sm-7 col-xs-7">
                 <%= image_tag product.image.url, class: "img-responsive" %>
               </div>
-              <div class="col-md-5 col-sm-5 col-xs-5 text-center product-cart-info">
-                <div class="product_text padding-left-0 name_product_in_shop padding-right-0">
-                  <strong><%= product.name %></strong>
+              <div class="col-md-5 col-sm-5 col-xs-5 text-center">
+                <div class=" product-cart-info">
+                  <div class="product_text padding-left-0 name_product_in_shop padding-right-0">
+                    <strong><%= product.name %></strong>
+                  </div>
+                  <div class="padding_0 product_text truncate">
+                    <h4 class="margin-bottom-10"><%= format_price product.price %></h4>
+                  </div>
+                  <%= product.shop_name %>
                 </div>
-                <div class="padding_0 product_text truncate">
-                  <h4 class="margin-bottom-10"><%= format_price product.price %></h4>
+                <div class="handle-product-cart">
+                  <%= t "cart.quantity" %>:
+                  <span class="quantity-product-cart">
+                    <%= @cart.find_item(product.id.to_s).quantity %>
+                  </span>
+                  <span class="item-right">
+                    <%= link_to cart_path(product.id), method: :delete,
+                      remote: true, class: "pull-right" do %>
+                      <span class="glyphicon glyphicon-trash text-danger action-padding">
+                      </span>
+                    <% end %>
+                  </span>
+                  <%= link_to edit_cart_path(id: product.id),
+                    method: :get, remote: true, class: "pull-right" do %>
+                    <span class="glyphicon glyphicon-minus-sign
+                      text-primary action-padding"></span>
+                  <% end %>
+                  <%= link_to cart_path(id: product.id, edit: true), remote: true,
+                    method: :put, class: "pull-right" do %>
+                    <span class="glyphicon glyphicon-plus-sign text-success
+                      action-padding">
+                    </span>
+                  <% end %>
                 </div>
-                <%= product.shop_name %>
               </div>
             </div>
           </div>
@@ -34,7 +60,10 @@
                 <b><%= t "add_cart.number_products" %></b><%= @cart.count %>
               </div>
               <div class="col-md-5 col-sm-5 col-xs-5">
-                <b><%= t "all" %></b> <%= format_price @cart.total_price %>
+                <b><%= t "all" %></b>
+                <span class="cart-price-in-modal">
+                  <%= format_price @cart.total_price %>
+                </span>  
               </div>
             </div>
           </div>

@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
   before_action :authenticate_user!, except: [:update, :index]
-  before_action :load_product, only: :update
+  before_action :load_product, only: [:update, :edit]
   before_action :check_before_order, only: [:new, :index]
   before_action :check_user_status_for_action, except: [:update, :index]
 
@@ -24,6 +24,7 @@ class CartsController < ApplicationController
       @cart.add_item params[:id], @product.shop.id
       update_session
     end
+    @is_edit = params[:edit]
   end
 
   def new
@@ -58,6 +59,7 @@ class CartsController < ApplicationController
 
   def edit
     item = @cart.find_item params[:id]
+    @is_edit = true
     if item.quantity > 1
       item.decrement
       update_session
