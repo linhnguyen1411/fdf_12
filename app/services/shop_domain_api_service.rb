@@ -7,7 +7,7 @@ class ShopDomainApiService
 
   def change_status
     domain = @shop_domain.domain
-    if domain.owner == @user.id
+    if domain.owner == @user.id || domain.user_domains.manager.find_by(user_id: @user.id).present?
       if @shop_domain.pending?
         ActiveRecord::Base.transaction do
           begin

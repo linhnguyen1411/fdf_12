@@ -41,6 +41,6 @@ class SendOrdersInfoToChatworkService
         shop: @orders.first.shop_name)
       body += "\n" + message + Settings.diliver_dot
     end
-    to_users(room, orders) + "\n" + "[info]" + Settings.forder_chatwork_title + body + "[/info]"
+    to_users(room, orders) + "[info]" + Settings.forder_chatwork_title + body + "[/info]"
   end
 end

@@ -7,7 +7,7 @@ class V1::ShopsController < V1::BaseController
     if params.has_key?(:top_shops)
       top_shops = @domain.shops.top_shops
       if top_shops.present?
-        response_success top_shops
+        response_success t("api.success"), top_shops
       else
         response_not_found t "api.error_list_shop_by_domain_not_found"
       end

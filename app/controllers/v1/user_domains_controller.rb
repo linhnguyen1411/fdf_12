@@ -4,7 +4,7 @@ class V1::UserDomainsController < V1::BaseController
   before_action :load_domain
 
   def create
-    if @domain.owner? current_user.id
+    if @domain.owner?(current_user.id) || @domain.user_domains.manager.find_by(user_id: current_user.id).present?
       user_domain = UserDomain.new user_domain_params
       if user_domain.save
         user_domain.create_event_add_user_domain @user.id

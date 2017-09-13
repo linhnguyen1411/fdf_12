@@ -1077,7 +1077,7 @@ ja:
   import_user: "Import account (excel)"
   import_group_user: "Import group (excel)"
   chatwork_shop_message:
-    open: "%{owner}の%{shop}ストアは、%{time} %{date}まで、%{url}に彼のお気に入りのアイテムを置く急ぎ"
+    open: "%{owner}の%{shop}ストアは、%{time} %{date}まで、%{url}にてお気に入りのを早くご注文を！"
     close: "%{owner}の%{shop}ストアは 閉じました。ありがとうございました。また会いしましょう！"
     open_forever: "%{owner}の%{shop}ストアは %{url}に彼のお気に入りのアイテムを置く急ぎ"
   follow: "フォローする"
