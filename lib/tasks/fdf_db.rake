@@ -4,163 +4,20 @@ namespace :fdf_db do
   end
   task create_user: :environment do
     User.create!(
-      name: "Dang Thi My Dung",
-      email: "dang.thi.my.dung@framgia.com",
+      name: "Tran Duc Quoc",
+      email: "tran.duc.quoc@framgia.com",
       password: "Aa@123",
       password_confirmation: "Aa@123",
       status: 1,
       authentication_token: Devise.friendly_token
     )
 
-    User.create!(
-      name: "Nguyen Thi Luong Duyen",
-      email: "nguyen.thi.luong.duyen@framgia.com",
-      password: "Aa@123",
-      password_confirmation: "Aa@123",
-      status: 1,
-      authentication_token: Devise.friendly_token
-    )
-
-    User.create!(
-      name: "Pham Thi Ngoc Quynh",
-      email: "pham.thi.ngoc.quynh@framgia.com",
-      password: "Aa@123",
-      password_confirmation: "Aa@123",
-      status: 1,
-      authentication_token: Devise.friendly_token
-    )
-
-    User.create!(
-      name: "Pham Xuan Vu",
-      email: "pham.xuan.vu@framgia.com",
-      password: "Aa@123",
-      password_confirmation: "Aa@123",
-      status: 1,
-      authentication_token: Devise.friendly_token
-    )
-
-    User.create!(
-      name: "Ta Duy Anh",
-      email: "ta.duy.anh@framgia.com",
-      password: "Aa@123",
-      password_confirmation: "Aa@123",
-      status: 1,
-      authentication_token: Devise.friendly_token
-    )
 
     User.create!(
       name: "Hoang Nhac Trung",
       email: "hoang.nhac.trung@framgia.com",
       password: "Aa@123",
       password_confirmation: "Aa@123",
-      status: 1,
-      authentication_token: Devise.friendly_token
-    )
-
-    User.create!(
-      name: "Yushi Fukagawa",
-      email: "yushi.fukagawa@framgia.com",
-      password: "Aa@123",
-      password_confirmation: "Aa@123",
-      status: 1,
-      authentication_token: Devise.friendly_token
-    )
-
-    User.create!(
-      name: "Vu Xuan Dung",
-      email: "vu.xuan.dung@framgia.com",
-      password: "Aa@123",
-      password_confirmation: "Aa@123",
-      status: 1,
-      authentication_token: Devise.friendly_token
-    )
-
-    User.create!(
-      name: "Nguyen Xuan Son",
-      email: "nguyen.xuan.son@framgia.com",
-      password: "Aa@123",
-      password_confirmation: "Aa@123",
-      status: 1,
-      authentication_token: Devise.friendly_token
-    )
-
-    User.create!(
-      name: "Nguyen Ngoc Tuan",
-      email: "nguyen.ngoc.tuan@framgia.com",
-      password: "Aa@123",
-      password_confirmation: "Aa@123",
-      status: 1,
-      authentication_token: Devise.friendly_token
-    )
-
-    User.create!(
-      name: "Nguyen Thi Minh Ngoc",
-      email: "nguyen.thi.minh.ngoc@framgia.com",
-      password: "Aa@123",
-      password_confirmation: "Aa@123",
-      status: 1,
-      authentication_token: Devise.friendly_token
-    )
-
-    User.create!(
-      name: "Tran Van Tan",
-      email: "tran.van.tan@framgia.com",
-      password: "Aa@123",
-      password_confirmation: "Aa@123",
-      status: 1,
-      authentication_token: Devise.friendly_token
-    )
-
-    User.create!(
-      name: "Dao Tri Vu",
-      email: "dao.tri.vu@framgia.com",
-      password: "Aa@123",
-      password_confirmation: "Aa@123",
-      status: 1,
-      authentication_token: Devise.friendly_token
-    )
-
-    User.create!(
-      name: "Ta Minh Thanh",
-      email: "ta.minh.thanh@framgia.com",
-      password: "Aa@123",
-      password_confirmation: "Aa@123",
-      status: 1,
-      authentication_token: Devise.friendly_token
-    )
-
-    User.create!(
-      name: "Chu Anh Tuan",
-      email: "chu.anh.tuan@framgia.com",
-      password: "Aa@123",
-      password_confirmation: "Aa@123",
-      status: 1,
-      authentication_token: Devise.friendly_token
-    )
-
-    User.create!(
-      name: "Nguyen Huu Thai Binh",
-      email: "nguyen.huu.thai.binh@framgia.com",
-      password: "Aa@123",
-      password_confirmation: "Aa@123",
-      status: 1,
-      authentication_token: Devise.friendly_token
-    )
-
-    User.create!(
-      name: "Hiroaki Ishida",
-      email: "hiroaki.ishida@framgia.com",
-      password: "Aa@123",
-      password_confirmation: "Aa@123",
-      status: 1,
-      authentication_token: Devise.friendly_token
-    )
-
-    User.create!(
-      name: "Tran Thi Ngoc Bich",
-      email: "tran.thi.ngoc.bich@framgia.com",
-      password: "123456",
-      password_confirmation: "123456",
       status: 1,
       authentication_token: Devise.friendly_token
     )
