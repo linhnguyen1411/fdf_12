@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    user = User.friendly.find params[:id]
+    user = User.friendly.find_by slug: params[:id]
     if user.present?
       if user == current_user
         if user.valid_password? params[:user][:current_password]
