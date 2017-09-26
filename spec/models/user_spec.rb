@@ -59,4 +59,26 @@ RSpec.describe User, type: :model do
       expect(User.recent).to eq(expect_result)
     end
   end
+  let!(:user1){FactoryGirl.create :user, created_at: Time.now}
+  let!(:user2){FactoryGirl.create :user, created_at: Time.now + 1.hour}
+  let!(:user3){FactoryGirl.create :user, created_at: Time.now + 2.hour, status: 0}
+  describe "scope" do
+    it ".by_date_newest" do
+      expect_result = [user3, user2, user1]
+      expect(User.by_date_newest).to eq(expect_result)
+    end
+
+    it ".of_ids" do
+      expect(User.of_ids(user1.id)).to eq([user1])
+    end
+
+    it ".list_all_users" do
+      expect(User.list_all_users([user1.id,user2.id])).to eq([user1,user2])
+    end
+
+    it ".user_of_list_id_include_role" do
+      a = user1.user_domains.new(role: 2)
+      expect(User.user_of_list_id_include_role([user1.id,user2.id], 1)).to eq([])
+    end
+  end
 end
