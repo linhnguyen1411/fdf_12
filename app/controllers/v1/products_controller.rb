@@ -11,7 +11,15 @@ class V1::ProductsController < V1::BaseController
       end
     else
       products = []
-      if params[:category_id].present?
+      if params[:domain_id].present?
+        Product.includes(:shop).find_each do |t|
+          if t.shop.domains.pluck(:id).include?(params[:domain_id].to_i) &&
+            t.product_domains.api_find_product_domains(params[:domain_id]) &&
+            t.shop.on?
+              products << t
+          end
+        end
+      elsif params[:category_id].present?
         Product.includes(:shop).find_each do |t|
           if t.category_id.to_s == params[:category_id] &&
             t.product_domains.api_find_product_domains(params[:domain_id]) &&
