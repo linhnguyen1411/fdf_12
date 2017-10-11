@@ -2,6 +2,7 @@
 
 class UserAvatarUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
+  process :crop_image
   if Rails.env.production?
     include Cloudinary::CarrierWave
     process tags: ["post_picture"]
@@ -70,6 +71,18 @@ class UserAvatarUploader < CarrierWave::Uploader::Base
     %w(jpg jpeg gif png)
   end
 
+  def crop_image
+    if model.avatar_crop_x.present?
+      manipulate! do |image|
+        x = model.avatar_crop_x.to_i
+        y = model.avatar_crop_y.to_i
+        w = model.avatar_crop_w.to_i
+        h = model.avatar_crop_h.to_i
+        image.crop "#{w}x#{h}+#{x}+#{y}"
+        image
+      end
+    end
+  end
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   # def filename

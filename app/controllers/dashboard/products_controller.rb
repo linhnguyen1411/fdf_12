@@ -89,7 +89,8 @@ class Dashboard::ProductsController < BaseDashboardController
   end
 
   def product_params
-    params.require(:product).permit :id, :name, :description, :price,
+    params.require(:product).permit :id, :name, :description, :price, :crop_product_x,
+      :crop_product_y, :crop_product_w, :crop_product_h,
       :category_id, :user_id, :image, :status, :tag_list, :start_hour, :end_hour
   end
 

@@ -1,6 +1,10 @@
 class Shop < ApplicationRecord
   strip_attributes only: [:description, :name]
+  attr_accessor :crop_avatar_x, :crop_avatar_y, :crop_avatar_w, :crop_avatar_h
+  CROP_SHOP_AVATAR = [:crop_avatar_x, :crop_avatar_y, :crop_avatar_w, :crop_avatar_h]
 
+  attr_accessor :cover_crop_x, :cover_crop_y, :cover_crop_w, :cover_crop_h
+  CROP_COVER = [:cover_crop_x, :cover_crop_y, :cover_crop_w, :cover_crop_h]
   acts_as_paranoid
   acts_as_followable
 

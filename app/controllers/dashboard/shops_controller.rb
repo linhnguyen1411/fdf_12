@@ -114,11 +114,15 @@ class Dashboard::ShopsController < BaseDashboardController
   private
   def shop_params
     if params[:shop][:openforever] == Settings.checkbox_value_true
-      params.require(:shop).permit(:id, :name, :description,
+      params.require(:shop).permit(:id, :name, :description, :cover_crop_x,
+        :cover_crop_y, :cover_crop_w, :cover_crop_h, :crop_avatar_x, :crop_avatar_y,
+        :crop_avatar_w, :crop_avatar_h,
         :cover_image, :avatar, :time_auto_reject, :time_auto_close, :openforever, :time_open, :time_close)
         .merge delayjob_id: nil
     else
-      params.require(:shop).permit(:id, :name, :description,
+      params.require(:shop).permit(:id, :name, :description, :cover_crop_x,
+        :cover_crop_y, :cover_crop_w, :cover_crop_h,:crop_avatar_x, :crop_avatar_y,
+        :crop_avatar_w, :crop_avatar_h,
         :cover_image, :avatar, :time_auto_reject, :time_auto_close, :openforever)
         .merge delayjob_id: nil
     end

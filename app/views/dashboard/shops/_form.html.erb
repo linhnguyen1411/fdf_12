@@ -11,10 +11,13 @@
         <div class="row">
           <div class="col-xs-12">
             <div class="form-group relative">
+              <% Shop::CROP_COVER.each do |attr| %>
+                <%= f.hidden_field attr.to_sym, id: "shop_#{attr}" %>
+              <% end %>
               <%= f.label :cover_image, t("owners_shop_cover_image") %>
-              <%= image_tag @shop.cover_image.url, class: "cover-image-shop" %>
+              <%= image_tag @shop.cover_image.url, class: "cover-image-shop img_cover_crop", id: "img_shop_cover" %>
               <%= f.file_field :cover_image, accept: Settings.pictures.accepted_files,
-                class: "upload-cover-image-shop hidden-file" %>
+                class: "upload-cover-image-shop hidden-file", id: "shop_cover" %>
               <%= link_to "javascript:void(0)", class: "choose-cover-image-shop" do %>
                 <i class="material-icons">camera_enhance</i>
                 <label class="margin-bottom-0">
@@ -25,10 +28,13 @@
           </div>
           <div class="col-xs-5 padding-right-0">
             <div class="form-group relative">
+              <% Shop::CROP_SHOP_AVATAR.each do |attr| %>
+                <%= f.hidden_field attr.to_sym, id: "shop_#{attr}" %>
+              <% end %>
               <%= f.label :avatar, t("owners_shop_avatar") %>
-              <%= image_tag @shop.avatar.url,class: "avatar-shop" %>
+              <%= image_tag @shop.avatar.url,class: "avatar-shop img_shop_avatar" %>
               <%= f.file_field :avatar, accept: Settings.pictures.accepted_files,
-                class: "upload-avatar-shop hidden-file" %>
+                class: "upload-avatar-shop hidden-file", id: "shop_avatar" %>
               <%= link_to "javascript:void(0)", class: "choose-avatar-shop" do %>
                 <i class="material-icons">camera_enhance</i>
                 <label class="margin-bottom-0">
@@ -99,6 +105,24 @@
           </div>
         </div>
       <% end %>
+      <div id="crop_cover_popup" class="mfp-hide" style="display:none;">
+        <div id="popup">
+          <h2>Crop Cover</h2>
+          <div class="crop_image">
+            <img src="" id="shop_cover_crop" style="max-width: 100%;">
+            <%= submit_tag "Crop", id: "submit_crop" %>
+          </div>
+        </div>
+      </div>
+      <div id="crop_avatar_shop" class="mfp-hide" style="display:none;">
+        <div id="popup">
+          <h2>Crop avatar</h2>
+          <div class="crop_image">
+            <img src="" id="shop_avatar_crop" style="max-width: 100%;">
+            <%= submit_tag "Crop", id: "submit_crop" %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  attr_accessor :avatar_crop_x, :avatar_crop_y, :avatar_crop_w, :avatar_crop_h
+  CROP_AVATAR = [:avatar_crop_x, :avatar_crop_y, :avatar_crop_w, :avatar_crop_h]
+
   strip_attributes only: [:description, :name, :chatwork_id]
 
   acts_as_token_authenticatable

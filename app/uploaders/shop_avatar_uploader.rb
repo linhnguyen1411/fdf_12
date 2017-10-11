@@ -2,6 +2,7 @@
 
 class ShopAvatarUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
+  process :crop_avatar
   if Rails.env.production?
     include Cloudinary::CarrierWave
     process tags: ["post_picture"]
@@ -40,6 +41,18 @@ class ShopAvatarUploader < CarrierWave::Uploader::Base
       .asset_path([version_name, "default_shop_avatar.png"].compact.join("_"))
   end
 
+  def crop_avatar
+    if model.crop_avatar_x.present?
+      manipulate! do |image|
+        x = model.crop_avatar_x.to_i
+        y = model.crop_avatar_y.to_i
+        w = model.crop_avatar_w.to_i
+        h = model.crop_avatar_h.to_i
+        image.crop "#{w}x#{h}+#{x}+#{y}"
+        image
+      end
+    end
+  end
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
   #   # For Rails 3.1+ asset pipeline compatibility:

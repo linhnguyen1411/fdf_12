@@ -2,6 +2,7 @@
 
 class ShopCoverUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
+  process :crop_cover
   if Rails.env.production?
     include Cloudinary::CarrierWave
     process tags: ["post_picture"]
@@ -33,6 +34,19 @@ class ShopCoverUploader < CarrierWave::Uploader::Base
     ActionController::Base
       .helpers
       .asset_path([version_name, "default_shop_cover.jpg"].compact.join("_"))
+  end
+
+  def crop_cover
+    if model.cover_crop_x.present?
+      manipulate! do |image|
+        x = model.cover_crop_x.to_i
+        y = model.cover_crop_y.to_i
+        w = model.cover_crop_w.to_i
+        h = model.cover_crop_h.to_i
+        image.crop "#{w}x#{h}+#{x}+#{y}"
+        image
+      end
+    end
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:

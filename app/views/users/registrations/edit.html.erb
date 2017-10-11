@@ -15,11 +15,14 @@
               <%= devise_error_messages! %>
             </div>
             <div class="col-xs-4">
-              <div class="form-group relative">
+              <div class="form-group relative" id= "preview_avatar">
+                <% User::CROP_AVATAR.each do |attr| %>
+                  <%= f.hidden_field attr.to_sym, id: "user_#{attr}" %>
+                <% end %>
                 <%= f.label t "edit_user.avatar" %>
-                <%= image_tag @user.avatar.url, class: "avatar avatar-show-user" %>
+                <%= image_tag @user.avatar.url, class: "avatar avatar-show-user",id: "img_user_avatar" %>
                 <%= f.file_field :avatar, accept: Settings.pictures.accepted_files,
-                  class: "upload-user-avatar hidden-file" %>
+                  class: "upload-user-avatar hidden-file", id: "user_avatar" %>
                 <%= link_to "javascript:void(0)", class: "choose-avatar" do %>
                   <i class="material-icons">camera_enhance</i>
                   <label class="margin-bottom-0">
@@ -59,6 +62,15 @@
                 class: "btn btn_add_to_cart btn-add form-button" %>
             </div>
           <% end %>
+          <div id="crop_avatar_popup" class="mfp-hide" style="display:none;">
+            <div id="popup">
+              <h2>Crop avatar</h2>
+              <div class="crop_image">
+                <img src="" id="user_avatar_crop" style="max-width: 100%;">
+                <%= submit_tag "Crop", id: "submit_crop" %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -3,15 +3,19 @@
     authenticity_token: true, remote: true  do |f| %>
     <div class="col-xs-5 padding-right-0">
       <div class="form-group relative">
+        <% Product::CROP_PRODUCT.each do |attr| %>
+          <%= f.hidden_field attr.to_sym, id: "product_#{attr}" %>
+        <% end %>
         <%= f.label :image, t("new_product.image") %>
-        <%= image_tag @product.image.url, class: "product-avatar" %>
+        <%= image_tag @product.image.url, class: "product-avatar", id: "img_product_crop"%>
         <%= f.file_field :image, accept: Settings.pictures.accepted_files,
-          class: "upload_img hidden-file" %>
+          class: "upload_img hidden-file", id: "product_crop" %>
         <%= link_to "javascript:void(0)", class: "choose-avatar" do %>
           <i class="material-icons">camera_enhance</i>
           <label class="margin-bottom-0"><%= t "update_image_avatar" %></label>
         <% end %>
       </div>
+
     </div>
     <div class="col-xs-7">
       <div class="form-group">
@@ -74,5 +78,13 @@
     </div>
   <% end %>
 </div>
-
+<div id="crop_product_popup" class="mfp-hide" style="display:none;">
+  <div id="popup">
+    <h2>Crop Product</h2>
+    <div class="crop_image">
+      <img src="" id="crop_product_img" style="max-width: 100%;">
+      <%= submit_tag "Crop", id: "submit_crop" %>
+    </div>
+  </div>
+</div>
  <%= javascript_include_tag "jquery.remotipart" %>

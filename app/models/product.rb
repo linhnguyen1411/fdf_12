@@ -1,4 +1,7 @@
 class Product < ApplicationRecord
+  attr_accessor :crop_product_x, :crop_product_y, :crop_product_w, :crop_product_h
+  CROP_PRODUCT = [:crop_product_x, :crop_product_y, :crop_product_w, :crop_product_h]
+
   strip_attributes only: [:description, :name]
 
   acts_as_paranoid

@@ -34,6 +34,8 @@
 //= require owl.carousel/dist/owl.carousel.min.js
 //= require ion.rangeSlider/js/ion.rangeSlider.js
 //= require jquery.validate
+//= require cropper
+//= require magnific-popup
 
 $(document).ready(function () {
   $('.alert').fadeOut(5000);

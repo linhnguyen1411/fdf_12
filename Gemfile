@@ -22,6 +22,8 @@ gem "simple_form"
 gem "dropzonejs-rails"
 gem "carrierwave",             "0.10.0"
 gem "mini_magick",             "3.8.0"
+gem "cropper-rails"
+gem 'magnific-popup-rails', '~> 1.1.0'
 gem "cloudinary"
 gem "adminlte2-rails"
 gem "figaro"

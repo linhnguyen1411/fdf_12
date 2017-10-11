@@ -1,22 +1,46 @@
 <div class="row">
   <div class="shop_image_cover_and_avatar">
     <%= simple_form_for [:dashboard, @shop], html: {id: "form_id"} do |f| %>
-      <%= image_tag @shop.cover_image.url, class: "defaut-pic-cover", id: "image-cover" %>
+      <% Shop::CROP_COVER.each do |attr| %>
+        <%= f.hidden_field attr.to_sym, id: "shop_#{attr}" %>
+      <% end %>
+      <%= image_tag @shop.cover_image.url, class: "defaut-pic-cover img_cover_crop", id: "image-cover" %>
       <div class="change_image_hover">
-        <%= f.file_field :cover_image, onchange: "this.form.submit();", class: "hide" %>
+        <%= f.file_field :cover_image, class: "hide", id: "shop_cover" %>
         <%= link_to "javascript:void(0)", class: "change_image" do %>
           <i class="material-icons change_icon">camera_enhance</i>
           <div class="change_item"><%= t "change_picture" %></div>
         <% end %>
       </div>
+      <div id="crop_cover_popup" class="mfp-hide" style="display:none;">
+        <div id="popup">
+          <h2>Crop Cover</h2>
+          <div class="crop_image">
+            <img src="" id="shop_cover_crop" style="max-width: 100%;">
+            <%= f.submit "Crop", id: "submit_crop" %>
+          </div>
+        </div>
+      </div>
       <div class="col-md-3 col-sm-3 col-xs-3">
-        <%= image_tag @shop.avatar.url, class: "avatar", id: "img-avatar" %>
+        <% Shop::CROP_SHOP_AVATAR.each do |attr| %>
+          <%= f.hidden_field attr.to_sym, id: "shop_#{attr}" %>
+        <% end %>
+        <%= image_tag @shop.avatar.url, class: "avatar img_shop_avatar", id: "img-avatar" %>
         <div class="change_image_hover">
           <%= f.file_field :avatar, onchange: "this.form.submit();", class: "hide" %>
           <%= link_to "javascript:void(0)", class: "change_image" do %>
             <i class="material-icons change_icon">camera_enhance</i>
             <div class="change_item"><%= t "change_picture" %></div>
           <% end %>
+        </div>
+        <div id="crop_avatar_shop" class="mfp-hide" style="display:none;">
+          <div id="popup">
+            <h2>Crop avatar</h2>
+            <div class="crop_image">
+              <img src="" id="shop_avatar_crop" style="max-width: 100%;">
+              <%= f.submit "Crop", id: "submit_crop" %>
+            </div>
+          </div>
         </div>
       </div>
     <% end %>
