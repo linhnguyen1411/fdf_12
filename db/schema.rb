@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170911022711) do
+ActiveRecord::Schema.define(version: 20171130062628) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -206,19 +206,20 @@ ActiveRecord::Schema.define(version: 20170911022711) do
 
   create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.text     "description", limit: 65535
-    t.float    "price",       limit: 24
+    t.text     "description",  limit: 65535
+    t.float    "price",        limit: 24
     t.string   "image"
-    t.integer  "status",                    default: 1
+    t.integer  "status",                     default: 1
     t.integer  "category_id"
     t.integer  "shop_id"
     t.integer  "user_id"
     t.datetime "deleted_at"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
     t.string   "slug"
     t.time     "start_hour"
     t.time     "end_hour"
+    t.boolean  "is_list_item",               default: false
     t.index ["category_id"], name: "index_products_on_category_id", using: :btree
     t.index ["deleted_at"], name: "index_products_on_deleted_at", using: :btree
     t.index ["name"], name: "index_products_on_name", using: :btree
@@ -327,6 +328,7 @@ ActiveRecord::Schema.define(version: 20170911022711) do
     t.integer  "delayjob_id"
     t.time     "time_open",                      default: '2000-01-01 00:00:00'
     t.time     "time_close",                     default: '2000-01-01 00:00:00'
+    t.string   "phone"
     t.index ["deleted_at"], name: "index_shops_on_deleted_at", using: :btree
     t.index ["owner_id"], name: "index_shops_on_owner_id", using: :btree
   end

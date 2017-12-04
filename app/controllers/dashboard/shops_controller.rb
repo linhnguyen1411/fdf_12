@@ -27,19 +27,26 @@ class Dashboard::ShopsController < BaseDashboardController
 
   def show
     if params[:key_word].present? || params[:search_satus].present?
-      case
+      @is_list_item = params[:is_list_item]
+      @products = case
       when params[:search_satus] == Settings.status_product.active
-        @products = @shop.products.active.search(name_or_description_cont: params[:key_word]).result
+         @shop.products.send(params[:is_list_item]).active
       when params[:search_satus] == Settings.status_product.inactive
-        @products = @shop.products.inactive.search(name_or_description_cont: params[:key_word]).result
+        @shop.products.send(params[:is_list_item]).inactive
       else
-        @products = @shop.products.search(name_or_description_cont: params[:key_word]).result
-      end
-      @type_search = true
+        @shop.products.send(params[:is_list_item])
+      end.search(name_or_description_cont: params[:key_word]).result.page(params[:page]).per Settings.common.products_per_page
+      @type_search = true if params[:type_search].nil?
     else
       @shop = @shop.decorate
-      @products = @shop.products.by_date_newest.page(params[:page])
-        .per Settings.common.products_per_page
+      @products = if params[:is_list_item].present?
+        @is_list_item = params[:is_list_item]
+        @shop.products.send(params[:is_list_item])
+      else
+        @optional_products = @shop.products.list_item.by_date_newest.page(params[:page])
+          .per Settings.common.products_per_page
+        @shop.products.non_list_item
+      end.by_date_newest.page(params[:page]).per Settings.common.products_per_page
       @products_all = @shop.products.all
       if @start_hour.present? and @end_hour.present?
         if compare_time_order @start_hour, @end_hour

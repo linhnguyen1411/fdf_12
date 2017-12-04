@@ -1,14 +1,25 @@
-<% if @type_search %>
-  $('#list-shop-products').html('<%= j render @products %>');
-  $('.load-more-products').hide();
+<% if @is_list_item == "list_item" %>
+  <% if @type_search %>
+    $('#list-shop-optional-products').html('<%= j render @products %>');
+  <% else %>
+    $('#list-shop-optional-products').append('<%= j render @products %>');
+  <% end %>
+  <% if @products.last_page? %>
+    $('.load-more-optional-products').hide();
+  <% else %>
+    $('.load-more-optional-products')
+      .html('<%= j link_to_next_page(@products, t("view_more_products"), params: {type_search: false}) %>').show();
+  <% end %>
 <% else %>
-  $(document).ready(function() {
+  <% if @type_search %>
+    $('#list-shop-products').html('<%= j render @products %>');
+  <% else %>
     $('#list-shop-products').append('<%= j render @products %>');
-    <% if @products.last_page? %>
-      $('.load-more-products').hide();
-    <% else %>
-      $('.load-more-products')
-        .html('<%= j link_to_next_page(@products, t("view_more_products")) %>');
-    <% end %>
-  });
+  <% end %>
+  <% if @products.last_page? %>
+    $('.load-more-products').hide();
+  <% else %>
+    $('.load-more-products')
+      .html('<%= j link_to_next_page(@products, t("view_more_products"), params: {type_search: false}) %>').show();
+  <% end %>
 <% end %>

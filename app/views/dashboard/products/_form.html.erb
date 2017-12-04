@@ -1,78 +1,110 @@
-<div class="row">
-  <%= form_for [:dashboard, @shop, @product], html: {class: "form-product"},
-    authenticity_token: true, remote: true  do |f| %>
-    <div class="col-xs-5 padding-right-0">
-      <div class="form-group relative">
-        <%= f.label :image, t("new_product.image") %>
-        <%= image_tag @product.image.url, class: "product-avatar" %>
-        <%= f.file_field :image, accept: Settings.pictures.accepted_files,
-          class: "upload_img hidden-file" %>
-        <%= link_to "javascript:void(0)", class: "choose-avatar" do %>
-          <i class="material-icons">camera_enhance</i>
-          <label class="margin-bottom-0"><%= t "update_image_avatar" %></label>
-        <% end %>
+<% if @product.is_list_item %>
+  <div class="row">
+    <%= form_for [:dashboard, @shop, @product], html: {class: "form-product"},
+      authenticity_token: true, remote: true  do |f| %>
+      <div class="col-xs-12">
+        <div class="form-group">
+          <%= f.label :name do %>
+            <%= t "new_product.name" %>
+            <span class="color-red">*</span>
+          <% end %>
+          <%= f.text_field :name, placeholder: t(".product_name"),
+            class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :status, t("new_product.status") %>
+          <%= f.select :status, options_for_select([[t("all_status.active"), :active],
+            [t("all_status.inactive"), :inactive]],
+            @product.id.present? ? @product.status : :active), {},
+            class: "form-control" %>
+        </div>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= hidden_field_tag :hidden_products_size, Settings.common.products_per_page %>
       </div>
-    </div>
-    <div class="col-xs-7">
-      <div class="form-group">
-        <%= f.label :category_id, t("new_product.category") %>
-        <%= f.select :category_id, load_select_category, {},
-          {class: "form-control"} %>
+      <div class="col-xs-12 button-group-form">
+        <%= link_to t("common.back_button"), :back,
+          class: "btn btn-default btn-back-to-shop form-button" %>
+        <%= f.submit yield(:submit_button),
+          class: "btn btn_add_to_cart btn-add padding-left-right-10 form-button" %>
       </div>
-      <div class="form-group">
-        <%= f.label :name do %>
-          <%= t "new_product.name" %>
-          <span class="color-red">*</span>
-        <% end %>
-        <%= f.text_field :name, placeholder: t(".product_name"),
-          class: "form-control" %>
+    <% end %>
+  </div>
+<% else %>
+  <div class="row">
+    <%= form_for [:dashboard, @shop, @product], html: {class: "form-product"},
+      authenticity_token: true, remote: true  do |f| %>
+      <div class="col-xs-5 padding-right-0">
+        <div class="form-group relative">
+          <%= f.label :image, t("new_product.image") %>
+          <%= image_tag @product.image.url, class: "product-avatar" %>
+          <%= f.file_field :image, accept: Settings.pictures.accepted_files,
+            class: "upload_img hidden-file" %>
+          <%= link_to "javascript:void(0)", class: "choose-avatar" do %>
+            <i class="material-icons">camera_enhance</i>
+            <label class="margin-bottom-0"><%= t "update_image_avatar" %></label>
+          <% end %>
+        </div>
       </div>
-      <div class="form-group">
-        <%= f.label :description do %>
-          <%= t "new_product.description" %>
-          <span class="color-red">*</span>
-        <% end %>
-        <%= f.text_area :description, placeholder: t(".product_description"),
-          class: "form-control content_note" %>
+      <div class="col-xs-7">
+        <div class="form-group">
+          <%= f.label :category_id, t("new_product.category") %>
+          <%= f.select :category_id, load_select_category, {},
+            {class: "form-control"} %>
+        </div>
+        <div class="form-group">
+          <%= f.label :name do %>
+            <%= t "new_product.name" %>
+            <span class="color-red">*</span>
+          <% end %>
+          <%= f.text_field :name, placeholder: t(".product_name"),
+            class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :description do %>
+            <%= t "new_product.description" %>
+            <span class="color-red">*</span>
+          <% end %>
+          <%= f.text_area :description, placeholder: t(".product_description"),
+            class: "form-control content_note" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :price do %>
+            <%= t "new_product.price" %>
+            <span class="color-red">*</span>
+          <% end %>
+          <%= f.number_field :price, placeholder: t(".product_price"),
+            class: "form-control" %>
+        </div>
+        <label class="time-error"></label>
+        <div class="form-group">
+          <%= f.label :start_hour, t("new_product.start_hour") << ":",
+            class: "width-150px" %>
+          <%= f.time_select :start_hour, default: @shop.time_open ,
+            minute_step: Settings.minute_step, class: "intime-group" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :end_hour, t("new_product.end_hour") << ":",
+            class: "width-150px" %>
+          <%= f.time_select :end_hour, default: @shop.time_close,
+            minute_step: Settings.minute_step, class: "intime-group" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :status, t("new_product.status") %>
+          <%= f.select :status, options_for_select([[t("all_status.active"), :active],
+            [t("all_status.inactive"), :inactive]],
+            @product.id.present? ? @product.status : :active), {},
+            class: "form-control" %>
+        </div>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= hidden_field_tag :hidden_products_size, Settings.common.products_per_page %>
       </div>
-      <div class="form-group">
-        <%= f.label :price do %>
-          <%= t "new_product.price" %>
-          <span class="color-red">*</span>
-        <% end %>
-        <%= f.number_field :price, placeholder: t(".product_price"),
-          class: "form-control" %>
+      <div class="col-xs-12 button-group-form">
+        <%= link_to t("common.back_button"), :back,
+          class: "btn btn-default btn-back-to-shop form-button" %>
+        <%= f.submit yield(:submit_button),
+          class: "btn btn_add_to_cart btn-add padding-left-right-10 form-button" %>
       </div>
-      <label class="time-error"></label>
-      <div class="form-group">
-        <%= f.label :start_hour, t("new_product.start_hour") << ":",
-          class: "width-150px" %>
-        <%= f.time_select :start_hour, default: @shop.time_open ,
-          minute_step: Settings.minute_step, class: "intime-group" %>
-      </div>
-      <div class="form-group">
-        <%= f.label :end_hour, t("new_product.end_hour") << ":",
-          class: "width-150px" %>
-        <%= f.time_select :end_hour, default: @shop.time_close,
-          minute_step: Settings.minute_step, class: "intime-group" %>
-      </div>
-      <div class="form-group">
-        <%= f.label :status, t("new_product.status") %>
-        <%= f.select :status, options_for_select([[t("all_status.active"), :active],
-          [t("all_status.inactive"), :inactive]],
-          @product.id.present? ? @product.status : :active), {},
-          class: "form-control" %>
-      </div>
-      <%= f.hidden_field :user_id, value: current_user.id %>
-      <%= hidden_field_tag :hidden_products_size, Settings.common.products_per_page %>
-    </div>
-    <div class="col-xs-12 button-group-form">
-      <%= link_to t("common.back_button"), :back,
-        class: "btn btn-default btn-back-to-shop form-button" %>
-      <%= f.submit yield(:submit_button),
-        class: "btn btn_add_to_cart btn-add padding-left-right-10 form-button" %>
-    </div>
-  <% end %>
-</div>
-
- <%= javascript_include_tag "jquery.remotipart" %>
+    <% end %>
+  </div>
+<% end %>
+<%= javascript_include_tag "jquery.remotipart" %>

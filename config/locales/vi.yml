@@ -604,6 +604,8 @@ vi:
         price: "Giá"
         actions: "Hành động"
         status : "Trạng thái"
+        ration: "Khẩu phần"
+        option: "Tự chọn"
       new:
         title: "Yêu cầu tạo cửa hàng"
       edit:

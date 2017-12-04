@@ -1,34 +1,49 @@
-<tr class="center-vertical-td animated fadeInUp product-id-<%= product.id %> product-in-shop">
-  <td>
-    <%= link_to product do %>
-      <div class="shop-product-image">
-        <%= image_tag product.image.url %>
-      </div><br>
-      <h5 class="time-output">
-        <strong>
-          <%= t "cart.order_time_text" %>
-          <%= l product.start_hour, format: :short_time %>
-          <%= t "split" %>
-          <%= l product.end_hour, format: :short_time %>
-        </strong>
-      </h5>
-    <% end %>
-  </td>
-  <td><%= product.name %></td>
-  <td>
-    <div class="auto_new_line_for_description_product">
-      <%= product.description %>
-    </div>
-  </td>
-  <td><%= product.price %></td>
-  <td><%= t "all_status.#{product.status}" %></td>
-  <td>
-    <%= link_to t("common.edit_button"),
-      edit_dashboard_shop_product_path(product.shop, product), remote: true,
-      class: "btn btn-sm btn-primary" %>
-    <%= link_to t("common.delete_button"),
-      dashboard_shop_product_path(product.shop, product),
-      data: {destroy: "product", "product-name": product.name},
-      class: "btn btn-sm btn-danger" %>
-  </td>
-</tr>
+<% if product.is_list_item? %>
+  <tr class="center-vertical-td animated fadeInUp product-id-<%= product.id %> product-in-shop">
+    <td><%= product.name %></td>
+    <td>
+      <%= link_to t("common.edit_button"),
+        edit_dashboard_shop_product_path(product.shop, product), remote: true,
+        class: "btn btn-sm btn-primary" %>
+      <%= link_to t("common.delete_button"),
+        dashboard_shop_product_path(product.shop, product),
+        data: {destroy: "product", "product-name": product.name},
+        class: "btn btn-sm btn-danger" %>
+    </td>
+  </tr>
+<% else %>
+  <tr class="center-vertical-td animated fadeInUp product-id-<%= product.id %> product-in-shop">
+    <td>
+      <%= link_to product do %>
+        <div class="shop-product-image">
+          <%= image_tag product.image.url %>
+        </div><br>
+        <h5 class="time-output">
+          <strong>
+            <%= t "cart.order_time_text" %>
+            <%= l product.start_hour, format: :short_time %>
+            <%= t "split" %>
+            <%= l product.end_hour, format: :short_time %>
+          </strong>
+        </h5>
+      <% end %>
+    </td>
+    <td><%= product.name %></td>
+    <td>
+      <div class="auto_new_line_for_description_product">
+        <%= product.description %>
+      </div>
+    </td>
+    <td><%= product.price %></td>
+    <td><%= t "all_status.#{product.status}" %></td>
+    <td>
+      <%= link_to t("common.edit_button"),
+        edit_dashboard_shop_product_path(product.shop, product), remote: true,
+        class: "btn btn-sm btn-primary" %>
+      <%= link_to t("common.delete_button"),
+        dashboard_shop_product_path(product.shop, product),
+        data: {destroy: "product", "product-name": product.name},
+        class: "btn btn-sm btn-danger" %>
+    </td>
+  </tr>
+<% end %>

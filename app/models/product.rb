@@ -46,7 +46,7 @@ class Product < ApplicationRecord
     on_or_after_message: I18n.t("invalid_hour")
   validates :price, presence: true,
     numericality: {greater_than: Settings.min_price,
-    less_than_or_equal_to: Settings.product.max_price}
+    less_than_or_equal_to: Settings.product.max_price}, allow_nil: true
 
   delegate :name, to: :shop, prefix: :shop, allow_nil: true
   delegate :avatar, to: :shop, prefix: :shop
@@ -73,7 +73,12 @@ class Product < ApplicationRecord
 
   scope :sort_by_price, -> sort {order price: sort if sort.present?}
 
+  scope :list_item, ->{where is_list_item: true}
+
+  scope :non_list_item, ->{where is_list_item: false}
+
   private
+
   def image_size
     max_size = Settings.pictures.max_size
     if image.size > max_size.megabytes

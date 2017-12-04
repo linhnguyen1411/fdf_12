@@ -557,6 +557,8 @@ ja:
         price: "価格"
         actions: "アクト"
         status : "ステート"
+        ration: "Ration"
+        option: "Option"
       new:
         title: "店を作成が必要です"
       edit:
