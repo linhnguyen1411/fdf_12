@@ -563,6 +563,8 @@ en:
         price: "Price"
         actions: "Actions"
         status : "Status"
+        ration: "Ration"
+        option: "Option"
       new:
         title: "Request shop"
       edit:

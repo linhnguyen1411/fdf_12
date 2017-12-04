@@ -278,7 +278,8 @@ namespace :fdf_db do
       cover_image: "image",
       avatar: File.open(Rails.root + "public/images/quancomtam.jpg"),
       averate_rating: 5.0,
-      owner_id: 1
+      owner_id: 1,
+      phone: "099999999"
     )
 
     Shop.create!(
@@ -287,7 +288,8 @@ namespace :fdf_db do
       status: 1,
       cover_image: "image",
       avatar: File.open(Rails.root + "public/images/quansinhto.jpg"),
-      owner_id: 4
+      owner_id: 4,
+      phone: "099999999"
     )
 
     Shop.create!(
@@ -296,7 +298,8 @@ namespace :fdf_db do
       status: 1,
       cover_image: "image",
       avatar: File.open(Rails.root + "public/images/quanchethai.jpg"),
-      owner_id: 3
+      owner_id: 3,
+      phone: "099999999"
     )
 
     Shop.create!(
@@ -305,7 +308,8 @@ namespace :fdf_db do
       status: 1,
       cover_image: "image",
       avatar: File.open(Rails.root + "public/images/quandua.jpg"),
-      owner_id: 3
+      owner_id: 3,
+      phone: "099999999"
     )
 
     Shop.create!(
@@ -314,7 +318,8 @@ namespace :fdf_db do
       cover_image: "image",
       avatar: File.open(Rails.root + "public/images/quanmiquang.jpg"),
       owner_id: 1,
-      status: 1
+      status: 1,
+      phone: "099999999"
     )
 
     Shop.create!(
@@ -323,7 +328,8 @@ namespace :fdf_db do
       cover_image: "image",
       avatar: File.open(Rails.root + "public/images/quansinhto.jpg"),
       owner_id: 1,
-      status: 1
+      status: 1,
+      phone: "099999999"
     )
 
     Shop.create!(
@@ -332,7 +338,8 @@ namespace :fdf_db do
       cover_image: "image",
       avatar: File.open(Rails.root + "public/images/quansinhto.jpg"),
       owner_id: 5,
-      status: 1
+      status: 1,
+      phone: "099999999"
     )
 
     Shop.create!(
@@ -341,7 +348,8 @@ namespace :fdf_db do
       status: 1,
       cover_image: "image",
       avatar: File.open(Rails.root + "public/images/cuahangmyque.jpg"),
-      owner_id: 2
+      owner_id: 2,
+      phone: "099999999"
     )
 
     Shop.create!(
@@ -350,7 +358,8 @@ namespace :fdf_db do
       status: 1,
       cover_image: "image",
       avatar: File.open(Rails.root + "public/images/cuahangtauhu.jpg"),
-      owner_id: 2
+      owner_id: 2,
+      phone: "099999999"
     )
 
     Shop.create!(
@@ -359,7 +368,8 @@ namespace :fdf_db do
       status: 1,
       cover_image: "image",
       avatar: File.open(Rails.root + "public/images/cuahangbunthitnuong.jpg"),
-      owner_id: 1
+      owner_id: 1,
+      phone: "099999999"
     )
 
     Shop.create!(
@@ -368,7 +378,8 @@ namespace :fdf_db do
       status: 1,
       cover_image: "image",
       avatar: File.open(Rails.root + "public/images/tocotoco_shop.jpg"),
-      owner_id: 18
+      owner_id: 18,
+      phone: "099999999"
     )
 
     Shop.create!(
@@ -377,7 +388,8 @@ namespace :fdf_db do
       status: 1,
       cover_image: "image",
       avatar: File.open(Rails.root + "public/images/coco_shop.jpg"),
-      owner_id: 18
+      owner_id: 18,
+      phone: "099999999"
     )
 
     Shop.create!( #13
@@ -386,7 +398,8 @@ namespace :fdf_db do
       status: 1,
       cover_image: "image",
       avatar: File.open(Rails.root + "public/images/cuahangtrasuagongcha.jpg"),
-      owner_id: 1
+      owner_id: 1,
+      phone: "099999999"
     )
     Shop.create!( #14
       name: "Trà sữa BoBaPop",
@@ -394,7 +407,8 @@ namespace :fdf_db do
       status: 1,
       cover_image: "image",
       avatar: File.open(Rails.root + "public/images/cuahangtrasuabobapop.jpg"),
-      owner_id: 1
+      owner_id: 1,
+      phone: "099999999"
     )
   end
 

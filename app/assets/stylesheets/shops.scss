@@ -879,3 +879,40 @@ input:checked + .slider:before {
 .search-order {
   width: 90%;
 }
+.box_pro.no-border-top{
+  border: dashed 1px #ff5722;
+  border-top: none;
+}
+.half-width > ul{
+  border-bottom: dashed 1px #ff5722;
+}
+.half-width > ul > li.active a, .half-width > ul > li.active a:hover,
+.half-width > ul > li.active a:focus{
+  background: image-url(header_bg) #ff5722;
+  color: #fff;
+  font-size: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.half-width > ul > li a:hover{
+  background: image-url(header_bg) #ff5722;
+  color: #fff;
+}
+.half-width > ul > li > a{
+  text-align: center;
+  font-family: "Source Sans Pro", "Lucida Grande", "HelveticaNeue", "Helvetica", "Arial", sans-serif;
+  font-weight: 600;
+  font-size: 30px;
+  color: #ff5722;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.half-width ul li {
+  width: 50%;
+}
+.box-product-list{
+  margin-top: 30px;
+}
+.center-table tr td, .center-table tr th{
+  text-align: center;
+}
