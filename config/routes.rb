@@ -55,6 +55,7 @@ Rails.application.routes.draw do
       resources :user_orders, only: [:index, :show]
       resources :group_orders, only: [:index, :show]
       resources :time_approve_orders, only: [:index, :show]
+      resources :paid_orders, only: [:index, :show]
     end
     resources :shop_settings, only: [:edit, :update]
     resources :statistics

@@ -34,7 +34,8 @@ module OrdersHelper
       I18n.t("order_manage_filter.product") => "product",
       I18n.t("order_manage_filter.user") => "user",
       I18n.t("order_manage_filter.group") => "group",
-      I18n.t("order_manage_filter.time") => "time"
+      I18n.t("order_manage_filter.time") => "time",
+      I18n.t("order_manage_filter.payment") => "paid",
     }
   end
 
@@ -52,6 +53,10 @@ module OrdersHelper
 
   def group_by_time_approve orders
     orders.group_by{|o| o.end_at}
+  end
+
+  def group_by_paid order_products
+    order_products.group_by{|o| o.order.is_paid}
   end
 
   def accepted_products order_products
@@ -81,11 +86,16 @@ module OrdersHelper
   end
 
   def paid_in_order_history_btn order
-    unless order.is_paid?
+    if order.is_paid?
+      content_tag(:i, "", class: "glyphicon glyphicon-check btn_done") +
+      (link_to t("unpaid"), "#",
+        class: "paid-history-btn",
+        data: {order_id: order.id, shop_id: order.shop.id, checked: false})
+    else
       content_tag(:i, "", class: "glyphicon glyphicon-check btn_done") +
       (link_to t("pay_order"), "#",
         class: "paid-history-btn",
-        data: {order_id: order.id, shop_id: order.shop.id})
+        data: {order_id: order.id, shop_id: order.shop.id, checked: true})
     end
   end
 end

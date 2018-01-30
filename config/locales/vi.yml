@@ -1000,6 +1000,7 @@ vi:
     user: "Người dùng"
     group: "Nhóm"
     time: "Thời gian đóng"
+    payment: "Trạng thái thanh toán"
   opening_hours: "Giờ mở bán"
   food_name: "Tên món ăn"
   view_more_products: "Xem thêm sản phẩm"

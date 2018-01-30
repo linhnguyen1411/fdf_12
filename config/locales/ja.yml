@@ -951,6 +951,7 @@ ja:
     user: "ユーザー"
     group: "グループ"
     time: "時間の受注を閉じます"
+    payment: "Payment Status"
   opening_hours: "業務時間"
   food_name: "食べ物の名前"
   view_more_products: "もっと見る"

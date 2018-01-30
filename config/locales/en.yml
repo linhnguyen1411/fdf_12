@@ -943,6 +943,7 @@ en:
     user: "User"
     group: "Group"
     time: "Closed time"
+    payment: "Payment Status"
   opening_hours: "Opening hours"
   food_name: "Food's name"
   view_more_products: "View more products"

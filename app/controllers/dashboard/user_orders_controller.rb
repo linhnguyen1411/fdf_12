@@ -38,7 +38,7 @@ class Dashboard::UserOrdersController < BaseDashboardController
       end
     end
   end
- 
+
   private
   def load_shop
     params[:shop_id] = params[:id] if params[:id]

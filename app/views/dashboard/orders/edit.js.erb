@@ -1,0 +1,8 @@
+<% if @mess == "true" && @is_paid == "true" %>
+  swal(I18n.t('api.success'), I18n.t('update_success'), 'success');
+  $('.check-order-is-paid-<%= @order.id %>').html('<span class="paid-order">'+ I18n.t("paid") + '</span></br>' +
+    '<%= paid_in_order_history_btn(@order) %>');
+<% elsif @mess === "true" && @is_paid === "false" %>
+  swal(I18n.t('api.success'), I18n.t('update_success'), 'success');
+  $('.check-order-is-paid-<%= @order.id %>').html('<span class="paid-order">'+ I18n.t("unpaid") + '</span></br>' + '<%= paid_in_order_history_btn(@order) %>');
+<% end %>

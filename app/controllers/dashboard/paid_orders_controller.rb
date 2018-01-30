@@ -1,29 +1,20 @@
-class Dashboard::OrderManagersController < BaseDashboardController
+class Dashboard::PaidOrdersController < BaseDashboardController
   before_action :load_shop
 
   def index
     @order_products_done = OrderProduct.in_date(params[:start_date], params[:end_date])
-      .done.order_by_date.history_by_day_with_status(@shop.id).group_by{|i| l(i.created_at, format: :custom_date)}
-    @order_products_reject = OrderProduct.in_date(params[:start_date], params[:end_date])
-      .rejected.order_by_date.history_by_day_with_status(@shop.id).group_by{|i| l(i.created_at, format: :custom_date)}
-    if request.xhr?
-      @params = params
-      respond_to do |format|
+      .done.order_by_date.order_done_of_shop(@shop.id).group_by{|i| l(i.created_at, format: :custom_date)}
+    respond_to do |format|
+      if request.xhr?
         format.js
       end
+      format.html
     end
   end
 
   def show
-    if params[:type] == Settings.filter_status_order.done
-      @order_products = OrderProduct.in_date(params[:start_date], params[:end_date])
-        .done.order_by_date.history_by_day_with_status(@shop.id)
-        .group_by{|i| l(i.created_at, format: :custom_date)}
-    else
-      @order_products = OrderProduct.in_date(params[:start_date], params[:end_date])
-        .rejected.order_by_date.history_by_day_with_status(@shop.id)
-        .group_by{|i| l(i.created_at, format: :custom_date)}
-    end
+    @order_products = OrderProduct.in_date(params[:start_date], params[:end_date])
+      .done.order_by_date.order_done_of_shop(@shop.id).group_by{|i| l(i.created_at, format: :custom_date)}
     file_name = I18n.l(DateTime.now, format: :long).to_s
     respond_to do |format|
       format.html

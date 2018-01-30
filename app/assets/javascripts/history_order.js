@@ -2,6 +2,13 @@ $(document).ready(function() {
   var start = null;
   var end = null;
 
+  $(document).on('change','.history-order-manager',function(){
+    if($(this).val() == "paid")
+      $('.order_reject').fadeOut();
+    else
+      $('.order_reject').fadeIn();
+  });
+
   function compare_current_date(date_s) {
     date_list = date_s.split('-');
     date = new Date(date_list[2], date_list[1] - 1, date_list[0]);

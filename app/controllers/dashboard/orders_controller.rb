@@ -34,16 +34,15 @@ class Dashboard::OrdersController < BaseDashboardController
   end
 
   def edit
-    order = Order.find_by id: params[:id]
-    if order.present? && order.update_attribute(:is_paid, params[:checked])
-      mess = Settings.update_success
+    @order = Order.find_by id: params[:id]
+    if @order.present? && @order.update_attribute(:is_paid, params[:checked])
+      @mess = Settings.update_success
+      @is_paid = params[:checked]
     else
-      mess = Settings.update_fails
+      @mess = Settings.update_fails
     end
     respond_to do |format|
-      format.json do
-        render json: {mess: mess}
-      end
+      format.js
     end
   end
 

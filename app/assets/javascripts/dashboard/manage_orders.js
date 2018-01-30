@@ -55,6 +55,12 @@ $(document).ready(function(){
     case 'group':
       url = '/dashboard/shops/' + shop_id + '/group_orders'
       break;
+    case 'paid':
+      url = '/dashboard/shops/' + shop_id + '/paid_orders'
+      break;
+    case 'unpaid':
+      url = '/dashboard/shops/' + shop_id + '/paid_orders'
+      break;
     default:
       url = '/dashboard/shops/' + shop_id + '/time_approve_orders'
     }
@@ -138,28 +144,35 @@ $(document).ready(function(){
       }
     }
   });
-
-  $(document).on('click', '.paid-history-btn', function(e) {
+    $(document).on('click', '.paid-history-btn', function(e) {
     e.preventDefault();
     var order_id = $(this).data('order-id');
     var shop_id = $(this).data('shop-id');
+    var checked = $(this).data('checked');
     $.ajax({
       url: '/dashboard/shops/' + shop_id + '/orders/' + order_id + '/edit',
       type: 'GET',
-      dataType: 'json',
+      dataType: 'script',
       data: {
-        checked: true
+        checked: checked
       },
-      success: function(response) {
-        if(response.mess === "true") {
-          sweetAlert(I18n.t('api.success'), I18n.t('update_success'), 'success');
-          $('.check-order-is-paid-'+ order_id)
-            .html('<span class="paid-order">'+ I18n.t("paid") + '</span>');
-        } else
-          sweetAlert(I18n.t('api.error'), I18n.t('update_fails'), 'error');
-      },
-      error: function(errors) {
-        sweetAlert(I18n.t('api.error'), I18n.t('api.error'), 'error');
+      success: function(data){
+        if($('.paid_order').data('verify') == true){
+          var shop_id = $('#shop_id').val();
+          var type = $('#history-order-manager').val();
+          var end_date = $('.order-manager-end').val();
+          var start_date = $('.order-manager-start').val();
+          $.ajax({
+            url: '/dashboard/shops/' + shop_id + '/paid_orders',
+            type: 'GET',
+            data: {
+              type: type,
+              shop_id: shop_id,
+              start_date: start_date,
+              end_date: end_date
+            }
+          });
+        }
       }
     });
   });

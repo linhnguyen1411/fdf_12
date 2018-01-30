@@ -51,7 +51,7 @@ class OrderProduct < ApplicationRecord
   end
 
   scope :order_done_of_shop, ->(shop_id) do
-    joins(:order)
+    includes(:product).eager_load(:order)
       .where("orders.status = ? and
         orders.shop_id = ?", Order.statuses[:done], shop_id)
   end
