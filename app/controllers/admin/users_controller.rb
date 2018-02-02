@@ -1,7 +1,7 @@
 class Admin::UsersController < AdminController
-  load_and_authorize_resource
   skip_load_and_authorize_resource only: :update
   before_action :load_user, only: [:update, :destroy]
+  authorize_resource
 
   def index
     if params[:search].present?
